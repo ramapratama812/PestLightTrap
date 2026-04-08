@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_bg_rounded"
+        android:padding="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_pill"> <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_user"
+            app:tint="@color/white"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
+            <TextView android:text="Budi Santoso" android:fontFamily="sans-serif-black" android:textSize="20sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="budisantoso@gmail.com" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/text_dark" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pill"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_edit" app:tint="@color/black"/>
+        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Edit Profil" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_marginStart="16dp"/>
+        <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_arrow_right" app:tint="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pill"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_notifications" app:tint="@color/black"/>
+        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Notifikasi" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_marginStart="16dp"/>
+        <Switch android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:theme="@style/Theme.MaterialComponents.DayNight"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pill"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_logout" app:tint="@color/black"/>
+        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Keluar" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_marginStart="16dp"/>
+        <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_arrow_right" app:tint="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_bg_rounded"
+        android:padding="24dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+        <TextView android:text="About Applications" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_marginBottom="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="Privacy Policy" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_marginBottom="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="Term of use" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_marginBottom="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="Help" android:fontFamily="sans-serif-black" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg_app">#B3BFE1</color>
+    <color name="bg_card">#F3F2FA</color>
+    <color name="text_dark">#1A1A1A</color>
+    <color name="text_grey">#666666</color>
+    <color name="progress_blue">#3A77F6</color>
+    <color name="progress_bg">#A0B8F0</color>
+
+    <color name="status_red">#E53935</color>
+    <color name="status_yellow">#FDD835</color>
+    <color name="status_green">#43A047</color>
+</resources>
