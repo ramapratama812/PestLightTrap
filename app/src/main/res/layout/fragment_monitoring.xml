@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:clipToPadding="false"
+    android:paddingBottom="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/btn_bell"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_notifications"
+            app:tint="@color/text_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PEMANTAUAN"
+            android:fontFamily="sans-serif-black"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg_rounded"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_video_placeholder"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_live_badge"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:layout_margin="16dp"
+                    android:gravity="center_vertical">
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/ic_menu_view" app:tint="@color/white"/>
+                    <TextView android:text="SIARAN LANGSUNG" android:textStyle="bold" android:textSize="9sp" android:textColor="@color/white" android:layout_marginStart="6dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btn_lampu_stream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LAMPU"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_btn_lampu"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="16dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="4dp">
+                <TextView android:text="PERSENTASE PERANGKAP" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="92%" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_alignParentEnd="true" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:max="100"
+                android:progress="92"
+                android:progressDrawable="@drawable/progress_purple"
+                android:layout_marginBottom="20dp"/>
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="4dp">
+                <TextView android:text="BATERAI" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="42%" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_alignParentEnd="true" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:max="100"
+                android:progress="42"
+                android:progressDrawable="@drawable/progress_blue_grey"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_btn_login"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_input_add" app:tint="@color/white"/>
+            <TextView android:text="SIARAN LAINNYA" android:textStyle="bold" android:textSize="10sp" android:letterSpacing="0.05" android:textColor="@color/white" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg_rounded"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp">
+
+            <TextView android:text="SYSTEM INSIGHTS" android:fontFamily="sans-serif-black" android:textSize="14sp" android:letterSpacing="0.2" android:textColor="@color/black" android:layout_marginBottom="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                    <TextView android:text="TOTAL HASIL" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="bottom" android:layout_marginTop="4dp" android:layout_marginBottom="4dp">
+                        <TextView android:text="1,242" android:fontFamily="sans-serif-black" android:textSize="28sp" android:textColor="@color/black" android:includeFontPadding="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text=" kg" android:textSize="12sp" android:textColor="@color/black" android:layout_marginBottom="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <TextView android:text="↗ +12% vs last cycle" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="16dp">
+                    <TextView android:text="ACTIVE NODES" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="bottom" android:layout_marginTop="4dp" android:layout_marginBottom="4dp">
+                        <TextView android:text="32" android:fontFamily="sans-serif-black" android:textSize="28sp" android:textColor="@color/black" android:includeFontPadding="false" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text=" / 35" android:textSize="12sp" android:textColor="@color/black" android:layout_marginBottom="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <TextView android:text="Status: Healthy" android:textStyle="bold" android:textSize="10sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -2,14 +2,37 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="bg_app">#B3BFE1</color>
     <color name="bg_card">#F3F2FA</color>
+    <color name="subcard_bg">#E1DFF1</color>
+
     <color name="text_dark">#1A1A1A</color>
     <color name="text_grey">#666666</color>
+    <color name="text_link">#424A6D</color>
+
+    <color name="btn_dark">#424A6D</color>
+    <color name="btn_light_grey">#E0E0E0</color>
+    <color name="border_dark">#2A2A4A</color>
+    <color name="icon_bg_dark">#3E4669</color>
+    <color name="toggle_bg">#C2C9E8</color>
+    <color name="toggle_active">#74A4FF</color>
+
+    <color name="video_bg">#111111</color>
+    <color name="live_bg">#80000000</color>
+
     <color name="progress_blue">#3A77F6</color>
     <color name="progress_bg">#A0B8F0</color>
+    <color name="progress_track_dark">#2C2B3C</color>
+    <color name="progress_purple">#A192ED</color>
+    <color name="progress_blue_grey">#829CB8</color>
+    <color name="bar_light">#8EBCD3</color>
+    <color name="bar_dark">#253D68</color>
 
     <color name="status_red">#E53935</color>
     <color name="status_yellow">#FDD835</color>
     <color name="status_green">#43A047</color>
+    <color name="badge_green">#58D68D</color>
+    <color name="status_inactive_bg">#424A6D</color>
+    <color name="status_active_border">#424A6D</color>
 </resources>

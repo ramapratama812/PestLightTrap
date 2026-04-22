@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:paddingTop="64dp"
+        android:paddingBottom="32dp"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_input_box">
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                app:tint="@color/btn_dark"
+                android:src="@drawable/ic_wifi" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIGHT TRAP"
+            android:fontFamily="sans-serif-black"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masuk ke Akun Anda"
+            android:textSize="16sp"
+            android:textColor="@color/text_dark"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="40dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EMAIL / NAMA PENGGUNA"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:letterSpacing="0.1"
+                android:textColor="@color/text_dark"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_input_box"
+                android:hint="nama@email.com"
+                android:paddingHorizontal="16dp"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="16dp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:inputType="textEmailAddress"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KATA SANDI"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/text_dark"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LUPA KATA SANDI?"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/text_dark"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_input_box"
+                android:hint="••••••••"
+                android:paddingHorizontal="16dp"
+                android:drawableStart="@android:drawable/ic_secure"
+                android:drawableEnd="@android:drawable/ic_menu_view"
+                android:drawablePadding="16dp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingat saya untuk 30 hari"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark"
+            app:buttonTint="@color/text_dark"
+            android:layout_marginBottom="32dp"/>
+
+        <RelativeLayout
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_btn_login"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Masuk"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_arrow_right"
+                app:tint="@color/white"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp">
+
+            <View android:layout_width="0dp" android:layout_weight="1" android:layout_height="1dp" android:background="#662A2A4A"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATAU GUNAKAN"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:letterSpacing="0.1"
+                android:textColor="@color/text_dark"
+                android:layout_marginHorizontal="16dp"/>
+            <View android:layout_width="0dp" android:layout_weight="1" android:layout_height="1dp" android:background="#662A2A4A"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_btn_google"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_google" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google"
+                android:textStyle="bold"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+        <Space android:layout_width="match_parent" android:layout_height="40dp"/> <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum punya akun? "
+            android:textColor="@color/text_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar Sekarang"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/text_link"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

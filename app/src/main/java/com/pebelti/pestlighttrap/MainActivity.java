@@ -1,8 +1,6 @@
 package com.pebelti.pestlighttrap;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,10 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.nav_home) {
                 selectedFragment = new HomeFragment();
+            } else if (itemId == R.id.nav_stats) {
+                selectedFragment = new StatsFragment();
+            } else if (itemId == R.id.nav_bug) {
+                // Menambahkan logika untuk membuka halaman pemantauan
+                selectedFragment = new MonitoringFragment();
             } else if (itemId == R.id.nav_settings) {
                 selectedFragment = new SettingsFragment();
             }
-            // Kamu bisa menambahkan else if untuk nav_stats dan nav_bug di sini nanti
 
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Fungsi untuk mengganti fragment yang ditampilkan
+    // Fungsi untuk mengganti fragment yang ditampilkan dengan animasi fade
     public void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
