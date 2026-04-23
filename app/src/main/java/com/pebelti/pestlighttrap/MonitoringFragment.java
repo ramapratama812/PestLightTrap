@@ -21,6 +21,7 @@ public class MonitoringFragment extends Fragment {
 
         // 1. Inisialisasi Widget dari XML
         ImageView btnBell = view.findViewById(R.id.btn_bell);
+        ImageView btnProfile = view.findViewById(R.id.btn_profile);
         TextView btnLampu = view.findViewById(R.id.btn_lampu_stream);
 
         // 2. Logika Klik Tombol Lampu di Siaran Langsung
@@ -36,6 +37,15 @@ public class MonitoringFragment extends Fragment {
             btnBell.setOnClickListener(v -> {
                 if (getActivity() instanceof MainActivity) {
                     ((MainActivity) getActivity()).loadFragment(new NotificationFragment());
+                }
+            });
+        }
+
+        // 4. Logika Navigasi Profil ke Pengaturan
+        if (btnProfile != null) {
+            btnProfile.setOnClickListener(v -> {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).loadFragment(new SettingsFragment());
                 }
             });
         }

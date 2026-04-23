@@ -29,6 +29,16 @@ public class StatsFragment extends Fragment {
             });
         }
 
+        // --- FITUR TOMBOL PROFIL ---
+        ImageView btnProfile = view.findViewById(R.id.btn_profile);
+        if (btnProfile != null) {
+            btnProfile.setOnClickListener(v -> {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).loadFragment(new SettingsFragment());
+                }
+            });
+        }
+
         // --- 2. MENGHUBUNGKAN ID TOMBOL DAN HALAMAN ---
         TextView tabPerangkap = view.findViewById(R.id.tab_perangkap);
         TextView tabBaterai = view.findViewById(R.id.tab_baterai);
