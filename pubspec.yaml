@@ -1,0 +1,31 @@
+name: pest_light_trap
+description: Smart Light Trap IoT App
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Sistem navigasi modern dan rapi
+  go_router: ^13.2.0
+  
+  # Tipografi yang mudah dibaca untuk pengguna lansia
+  google_fonts: ^6.2.1
+  
+  # Untuk membuat grafik analisis perangkap dan monitoring baterai
+  fl_chart: ^0.66.0
+  
+  # Untuk state management (mengatur status lampu, baterai, dll)
+  provider: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true

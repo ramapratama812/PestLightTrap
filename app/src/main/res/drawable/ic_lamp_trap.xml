@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Top wire -->
+    <path
+        android:pathData="M50,15 L50,38"
+        android:strokeColor="#111144"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"/>
+
+    <!-- Connector -->
+    <path
+        android:pathData="M44,36 L56,36 L56,41 L44,41 Z"
+        android:fillColor="#111144" />
+
+    <!-- Lamp shade outline -->
+    <path
+        android:pathData="M20,60 A30,30 0 0,1 80,60 Z"
+        android:strokeColor="#111144"
+        android:strokeWidth="5"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
+
+    <!-- Bottom brim -->
+    <path
+        android:pathData="M14,60 L86,60"
+        android:strokeColor="#111144"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"/>
+
+    <!-- Bulb (filled) -->
+    <path
+        android:pathData="M42,60 A8,8 0 0,0 58,60 Z"
+        android:fillColor="#8A90FF" />
+</vector>
