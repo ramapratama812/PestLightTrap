@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@android:drawable/ic_menu_myplaces"
-        android:title="Beranda" />
+        android:icon="@drawable/ic_nav_home"
+        android:title="Home" />
     <item
         android:id="@+id/nav_analytics"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Analisis" />
+        android:icon="@drawable/ic_nav_analytics"
+        android:title="Analytics" />
     <item
-        android:id="@+id/nav_monitor"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="Monitoring" />
+        android:id="@+id/nav_log"
+        android:icon="@drawable/ic_nav_log"
+        android:title="Trap Log" />
     <item
         android:id="@+id/nav_settings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="Pengaturan" />
+        android:icon="@drawable/ic_nav_settings"
+        android:title="Settings" />
 </menu>

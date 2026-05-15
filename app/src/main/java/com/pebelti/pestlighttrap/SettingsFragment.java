@@ -18,7 +18,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        MaterialCardView btnLogout = view.findViewById(R.id.btnLogout);
+        View btnLogout = view.findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(v -> showLogoutDialog());
 
         return view;

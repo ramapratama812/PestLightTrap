@@ -1,53 +1,45 @@
 package com.pebelti.pestlighttrap;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
-
-    private FrameLayout btnToggleDevice;
-    private TextView tvStatus;
-    private View statusIndicator;
-    private TextView tvToggleBadge;
-    private boolean isDeviceOn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btnToggleDevice = findViewById(R.id.btnToggleDevice);
-        tvStatus = findViewById(R.id.tvDeviceStatus);
-        statusIndicator = findViewById(R.id.statusIndicator);
-        tvToggleBadge = findViewById(R.id.tvToggleBadge);
-
-        btnToggleDevice.setOnClickListener(v -> {
-            isDeviceOn = !isDeviceOn;
-            if (isDeviceOn) {
-                tvStatus.setText("ACTIVE");
-                tvStatus.setTextColor(Color.parseColor("#4CAF50")); // Hijau
-                statusIndicator.setBackgroundResource(R.drawable.dot_green);
-                tvToggleBadge.setText("ON");
-                tvToggleBadge.setBackgroundResource(R.drawable.bg_badge_green);
-                tvToggleBadge.setTextColor(Color.parseColor("#4CAF50"));
-            } else {
-                tvStatus.setText("INACTIVE");
-                tvStatus.setTextColor(Color.parseColor("#F44336")); // Merah
-                statusIndicator.setBackgroundResource(R.drawable.dot_red);
-                tvToggleBadge.setText("OFF");
-                tvToggleBadge.setBackgroundResource(R.drawable.bg_badge_red);
-                tvToggleBadge.setTextColor(Color.parseColor("#F44336"));
-            }
-        });
-
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
+        
+        // Load initial fragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeDashboardFragment())
+                .commit();
+        }
+
         bottomNav.setOnItemSelectedListener(item -> {
-            // TODO: Implementasi pergantian Fragment
+            Fragment selectedFragment = null;
+            int itemId = item.getItemId();
+            
+            if (itemId == R.id.nav_home) {
+                selectedFragment = new HomeDashboardFragment();
+            } else if (itemId == R.id.nav_analytics) {
+                selectedFragment = new BatteryMonitoringFragment();
+            } else if (itemId == R.id.nav_log) {
+                selectedFragment = new TrapAnalysisFragment();
+            } else if (itemId == R.id.nav_settings) {
+                selectedFragment = new SettingsFragment();
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, selectedFragment)
+                    .commit();
+            }
             return true;
         });
     }

@@ -29,24 +29,28 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NotificationItem item = notificationList.get(position);
         holder.tvTitle.setText(item.getTitle());
+        holder.tvDescription.setText(item.getDescription());
         holder.tvTime.setText(item.getTime());
+        holder.tvBadge.setText(item.getType());
+        holder.ivIcon.setImageResource(item.getIconResId());
 
-        // Set indikator warna berdasarkan tipe
+        int color;
         switch (item.getType()) {
             case "CRITICAL":
-                holder.colorIndicator.setBackgroundColor(Color.parseColor("#F44336")); // Merah
-                holder.ivIcon.setImageResource(android.R.drawable.ic_dialog_alert);
+                color = Color.parseColor("#F44336");
                 break;
             case "WARNING":
-                holder.colorIndicator.setBackgroundColor(Color.parseColor("#FF9800")); // Kuning
-                holder.ivIcon.setImageResource(android.R.drawable.ic_dialog_info);
+                color = Color.parseColor("#FF9800");
                 break;
             case "INFO":
             default:
-                holder.colorIndicator.setBackgroundColor(Color.parseColor("#4CAF50")); // Hijau
-                holder.ivIcon.setImageResource(android.R.drawable.ic_menu_info_details);
+                color = Color.parseColor("#4CAF50");
                 break;
         }
+
+        holder.colorIndicator.setBackgroundColor(color);
+        holder.iconBg.getBackground().setTint(color);
+        holder.tvBadge.getBackground().setTint(color);
     }
 
     @Override
@@ -56,16 +60,22 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View colorIndicator;
+        View iconBg;
         ImageView ivIcon;
         TextView tvTitle;
+        TextView tvDescription;
         TextView tvTime;
+        TextView tvBadge;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             colorIndicator = itemView.findViewById(R.id.colorIndicator);
+            iconBg = itemView.findViewById(R.id.iconBg);
             ivIcon = itemView.findViewById(R.id.ivNotificationIcon);
             tvTitle = itemView.findViewById(R.id.tvNotificationTitle);
+            tvDescription = itemView.findViewById(R.id.tvNotificationDesc);
             tvTime = itemView.findViewById(R.id.tvNotificationTime);
+            tvBadge = itemView.findViewById(R.id.tvNotificationBadge);
         }
     }
 }

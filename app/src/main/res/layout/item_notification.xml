@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="2dp"
     app:cardBackgroundColor="#FFFFFF">
 
@@ -13,47 +13,93 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Colored side bar -->
         <View
             android:id="@+id/colorIndicator"
-            android:layout_width="8dp"
+            android:layout_width="4dp"
             android:layout_height="match_parent"
-            android:background="#4CAF50" />
+            android:background="#F44336"/>
 
-        <ImageView
-            android:id="@+id/ivNotificationIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@android:drawable/ic_dialog_info"
-            app:tint="#191970" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingVertical="16dp"
-            android:paddingEnd="16dp">
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvNotificationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Judul Notifikasi"
-                android:textColor="#191970"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            <!-- Icon background circle -->
+            <View
+                android:id="@+id/iconBg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_circle_soft"
+                android:layout_centerVertical="true"/>
 
-            <TextView
-                android:id="@+id/tvNotificationTime"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/ivNotificationIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@id/iconBg"
+                android:layout_alignEnd="@id/iconBg"
+                android:src="@drawable/ic_battery_outline"
+                app:tint="#FFFFFF"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5 menit yang lalu"
-                android:textColor="#555555"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/iconBg"
+                android:layout_marginStart="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    
+                    <TextView
+                        android:id="@+id/tvNotificationTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Low Battery"
+                        android:textColor="#191970"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                    
+                    <TextView
+                        android:id="@+id/tvNotificationTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5 mins ago"
+                        android:textColor="#7986CB"
+                        android:textSize="12sp"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvNotificationDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Battery dropped to 15%. Please charge solar panel."
+                    android:textColor="#5C6BC0"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="80dp"/>
+
+                <TextView
+                    android:id="@+id/tvNotificationBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CRITICAL"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:background="@drawable/bg_pill_soft"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="-8dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

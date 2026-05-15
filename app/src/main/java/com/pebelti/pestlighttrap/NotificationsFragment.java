@@ -30,11 +30,14 @@ public class NotificationsFragment extends Fragment {
 
         rvNotifications.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Data dummy notifikasi
+        // Data dummy notifikasi sesuai gambar
         notificationList = new ArrayList<>();
-        notificationList.add(new NotificationItem("Baterai Lemah (15%)", "5 menit yang lalu", "CRITICAL"));
-        notificationList.add(new NotificationItem("Lampu UV Aktif", "1 jam yang lalu", "INFO"));
-        notificationList.add(new NotificationItem("Kapasitas Penuh", "Kemarin", "WARNING"));
+        notificationList.add(new NotificationItem("Low Battery", "Battery dropped to 15%. Please charge solar panel.", "5 mins ago", "CRITICAL", R.drawable.ic_battery_outline));
+        notificationList.add(new NotificationItem("Trap Full", "Insect trap capacity reached 100%. Empty required.", "32 mins ago", "WARNING", R.drawable.ic_bug_report));
+        notificationList.add(new NotificationItem("Bulb Failure", "UV light bulb not responding. Check connection.", "1 hr ago", "CRITICAL", R.drawable.ic_lightbulb_outline));
+        notificationList.add(new NotificationItem("System Normal", "All sensors operating within normal parameters.", "3 hrs ago", "INFO", R.drawable.ic_check_circle));
+        notificationList.add(new NotificationItem("Low Solar Input", "Solar panel efficiency at 45% due to cloudy weather.", "Yesterday", "WARNING", R.drawable.ic_solar_panel));
+        notificationList.add(new NotificationItem("Trap Activated", "Night mode started at 18:00. Trap is now active.", "Yesterday", "INFO", R.drawable.ic_lamp_trap));
 
         if (notificationList.isEmpty()) {
             tvEmptyState.setVisibility(View.VISIBLE);
