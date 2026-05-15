@@ -40,17 +40,17 @@ public class HomeDashboardFragment extends Fragment {
         btnToggleDevice.setOnClickListener(v -> {
             isDeviceOn = !isDeviceOn;
             if (isDeviceOn) {
-                tvStatus.setText("ACTIVE");
-                tvStatus.setTextColor(Color.parseColor("#4CAF50")); // Hijau
-                statusIndicator.setBackgroundResource(R.drawable.dot_green);
-                tvToggleBadge.setText("ON");
-                tvToggleBadge.setBackgroundResource(R.drawable.bg_badge_green);
-                tvToggleBadge.setTextColor(Color.parseColor("#4CAF50"));
+                tvStatus.setText("AKTIF");
+                tvStatus.setTextColor(Color.parseColor("#191970")); // Purple Navy
+                statusIndicator.setBackgroundResource(R.drawable.dot_green); // Blue dot
+                tvToggleBadge.setText("NYALA");
+                tvToggleBadge.setBackgroundResource(R.drawable.bg_pill_soft); // Purple Background
+                tvToggleBadge.setTextColor(Color.WHITE); // White Font
             } else {
-                tvStatus.setText("INACTIVE");
-                tvStatus.setTextColor(Color.parseColor("#F44336")); // Merah
+                tvStatus.setText("TIDAK AKTIF");
+                tvStatus.setTextColor(Color.parseColor("#F44336")); // Red
                 statusIndicator.setBackgroundResource(R.drawable.dot_red);
-                tvToggleBadge.setText("OFF");
+                tvToggleBadge.setText("MATI");
                 tvToggleBadge.setBackgroundResource(R.drawable.bg_badge_red);
                 tvToggleBadge.setTextColor(Color.parseColor("#F44336"));
             }

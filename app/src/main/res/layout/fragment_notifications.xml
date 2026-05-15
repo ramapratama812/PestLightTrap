@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RECENT EVENTS"
+            android:text="KEJADIAN TERBARU"
             android:textColor="#191970"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -25,7 +25,7 @@
             android:id="@+id/tvMarkAsRead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mark all as read"
+            android:text="Tandai semua dibaca"
             android:textColor="#5C6BC0"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -45,7 +45,7 @@
         android:id="@+id/tvEmptyState"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="No recent events"
+        android:text="Tidak ada kejadian terbaru"
         android:textColor="#7986CB"
         android:gravity="center"
         android:visibility="gone"/>

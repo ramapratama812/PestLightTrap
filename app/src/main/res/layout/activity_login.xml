@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome Back"
+            android:text="Masuk ke akun Anda"
             android:textColor="#191970"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in to your account"
+            android:text="Selamat datang kembali di Light Trap"
             android:textColor="#7986CB"
             android:textSize="14sp"
             android:layout_marginTop="8dp"
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMAIL / USERNAME"
+                    android:text="EMAIL / NAMA PENGGUNA"
                     android:textColor="#7986CB"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -84,7 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:hint="Enter your email"
+                        android:hint="Masukkan email Anda"
                         android:textColorHint="#9FA8DA"
                         android:textColor="#191970"
                         android:textSize="14sp"
@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PASSWORD"
+                    android:text="KATA SANDI"
                     android:textColor="#7986CB"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -124,7 +124,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:hint="Enter your password"
+                        android:hint="Masukkan kata sandi"
                         android:textColorHint="#9FA8DA"
                         android:textColor="#191970"
                         android:textSize="14sp"
@@ -142,7 +142,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FORGOT PASSWORD?"
+                    android:text="Lupa kata sandi?"
                     android:textColor="#5C6BC0"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -154,7 +154,7 @@
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="Login  →"
+                    android:text="Masuk  →"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
@@ -179,7 +179,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="OR USE"
+                        android:text="ATAU"
                         android:textColor="#7986CB"
                         android:textSize="10sp"
                         android:layout_marginHorizontal="12dp"
@@ -196,7 +196,7 @@
                     android:id="@+id/btnGoogle"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="Continue with Google"
+                    android:text="Lanjutkan dengan Google"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
@@ -221,14 +221,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account? "
+                android:text="Belum punya akun? "
                 android:textColor="#7986CB"
                 android:textSize="14sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register Now"
+                android:text="Daftar Sekarang"
                 android:textColor="#5C6BC0"
                 android:textSize="14sp"
                 android:textStyle="bold"/>

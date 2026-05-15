@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="Pengaturan"
             android:textColor="#191970"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -77,13 +77,13 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/ic_camera"
-                        app:tint="#5C6BC0"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edit Photo"
-                        android:textColor="#5C6BC0"
+                        android:text="Ubah Foto"
+                        android:textColor="@color/white"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"/>
@@ -96,7 +96,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ACCOUNT"
+            android:text="AKUN"
             android:textColor="#7986CB"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -134,13 +134,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_user_outline"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Edit Profile"
+                        android:text="Ubah Profil"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -169,13 +169,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_notifications"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Notifications"
+                        android:text="Notifikasi"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -207,13 +207,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_lock_outline"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Change Password"
+                        android:text="Ubah Kata Sandi"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -233,7 +233,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="APPLICATION"
+            android:text="APLIKASI"
             android:textColor="#7986CB"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -271,13 +271,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_info"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="About Application"
+                        android:text="Tentang Aplikasi"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -308,13 +308,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_privacy"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Privacy Policy"
+                        android:text="Kebijakan Privasi"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -345,13 +345,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_terms"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Terms of Use"
+                        android:text="Syarat Penggunaan"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -382,13 +382,13 @@
                         android:background="@drawable/bg_circle_soft"
                         android:padding="10dp"
                         android:src="@drawable/ic_help"
-                        app:tint="#191970"/>
+                        app:tint="@color/white"/>
                     
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Help &amp; Support"
+                        android:text="Bantuan &amp; Dukungan"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -425,7 +425,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log Out"
+                android:text="Keluar"
                 android:textColor="#F44336"
                 android:textSize="18sp"
                 android:textStyle="bold"

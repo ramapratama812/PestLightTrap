@@ -37,7 +37,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Good Evening,"
+                        android:text="Selamat Malam,"
                         android:textColor="#7986CB"
                         android:textSize="14sp"/>
                     <TextView
@@ -59,7 +59,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:src="@drawable/ic_notifications"
-                        app:tint="#191970"/>
+                        app:tint="@color/purple_navy"/>
                     <View
                         android:layout_width="10dp"
                         android:layout_height="10dp"
@@ -99,7 +99,7 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:text="DEVICE STATUS"
+                                android:text="STATUS PERANGKAT"
                                 android:textColor="#7986CB"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
@@ -110,7 +110,7 @@
                                 android:background="@drawable/bg_circle_soft"
                                 android:padding="4dp"
                                 android:src="@drawable/ic_lightbulb_outline"
-                                app:tint="#7986CB"/>
+                                app:tint="@color/white"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -128,8 +128,8 @@
                                 android:id="@+id/tvDeviceStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ACTIVE"
-                                android:textColor="#4CAF50"
+                                android:text="AKTIF"
+                                android:textColor="#5C6BC0"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:layout_marginStart="8dp"/>
@@ -138,7 +138,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Running normally"
+                            android:text="Berjalan Normal"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:layout_marginTop="8dp"/>
@@ -169,7 +169,7 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                android:text="CURRENT POWER DRAW"
+                                android:text="DAYA SAAT INI"
                                 android:textColor="#7986CB"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
@@ -209,7 +209,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Low consumption"
+                            android:text="Konsumsi rendah"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:layout_marginTop="8dp"/>
@@ -242,7 +242,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="DEVICE CONTROL"
+                            android:text="KONTROL PERANGKAT"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -251,11 +251,11 @@
                             android:id="@+id/tvToggleBadge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ON"
-                            android:textColor="#4CAF50"
+                            android:text="NYALA"
+                            android:textColor="@color/white"
                             android:textSize="12sp"
                             android:textStyle="bold"
-                            android:background="@drawable/bg_badge_green"
+                            android:background="@drawable/bg_pill_soft"
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="4dp"/>
                     </LinearLayout>
@@ -276,13 +276,14 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_power_white" />
+                            android:src="@drawable/ic_power_white"
+                            app:tint="@color/white" />
                     </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TAP TO TOGGLE"
+                        android:text="KETUK UNTUK MENGUBAH"
                         android:textColor="#7986CB"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -316,7 +317,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="OPERATION MODE"
+                            android:text="MODE OPERASI"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -324,7 +325,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="✎ Edit"
+                            android:text="✎ Ubah"
                             android:textColor="#5C6BC0"
                             android:textSize="12sp"
                             android:textStyle="bold"/>
@@ -357,14 +358,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Active Schedule"
-                                android:textColor="#7986CB"
+                                android:text="Jadwal Aktif"
+                                android:textColor="#FFFFFF"
                                 android:textSize="12sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="06:00 PM — 06:00 AM"
-                                android:textColor="#191970"
+                                android:text="18:00 — 06:00"
+                                android:textColor="#FFFFFF"
                                 android:textSize="16sp"
                                 android:textStyle="bold"/>
                         </LinearLayout>
@@ -380,25 +381,25 @@
                         android:weightSum="7">
                         
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="M" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="T" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="W" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="R" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="T" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="K" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="F" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
-                        </FrameLayout>
-                        <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#7986CB" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft"/>
+                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="J" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                             <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#7986CB" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft"/>
+                        </FrameLayout>
+                        <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="M" android:textColor="#7986CB" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft"/>
                         </FrameLayout>
                     </LinearLayout>
 
@@ -423,7 +424,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TONIGHT'S CATCH"
+                        android:text="TANGKAPAN MALAM INI"
                         android:textColor="#7986CB"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -448,7 +449,8 @@
                                 android:layout_height="56dp"
                                 android:background="@drawable/bg_circle_soft"
                                 android:padding="14dp"
-                                android:src="@drawable/ic_bug_report" />
+                                android:src="@drawable/ic_bug_report"
+                                app:tint="@color/white" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -479,7 +481,8 @@
                                 android:layout_height="56dp"
                                 android:background="@drawable/bg_circle_soft"
                                 android:padding="14dp"
-                                android:src="@drawable/ic_schedule" />
+                                android:src="@drawable/ic_schedule"
+                                app:tint="@color/white" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

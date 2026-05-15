@@ -44,7 +44,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 break;
             case "INFO":
             default:
-                color = Color.parseColor("#4CAF50");
+                color = Color.parseColor("#5C6BC0");
                 break;
         }
 
