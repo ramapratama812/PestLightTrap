@@ -37,13 +37,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Selamat Malam,"
+                        android:text="SELAMAT DATANG,"
                         android:textColor="#7986CB"
                         android:textSize="14sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Budi Santoso"
+                        android:text="BUDI SANTOSO"
                         android:textColor="#191970"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
@@ -67,6 +67,97 @@
                         android:layout_gravity="top|end"/>
                 </FrameLayout>
             </LinearLayout>
+
+        <!-- CLOCK CARD (NEW) -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#FFFFFF">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    
+                    <!-- Date -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_calendar"
+                            app:tint="#7986CB"
+                            android:layout_marginEnd="8dp"/>
+                        <TextView
+                            android:id="@+id/tvDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SENIN, 18 MEI 2026"
+                            android:textColor="#7986CB"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    
+                    <!-- Day/Night Icon -->
+                    <FrameLayout
+                        android:id="@+id/layoutDayNight"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/bg_circle_soft"
+                        android:backgroundTint="#191970"
+                        android:padding="8dp">
+                        <ImageView
+                            android:id="@+id/ivDayNight"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_moon"
+                            app:tint="#FFD54F"/>
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <!-- Time -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="bottom">
+                    <TextView
+                        android:id="@+id/tvTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18:30"
+                        android:textColor="#191970"
+                        android:textSize="48sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tvAmPm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PM"
+                        android:textColor="#7986CB"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"/>
+                </LinearLayout>
+                
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
             <!-- ROW 1 CARDS -->
             <LinearLayout
@@ -129,7 +220,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="AKTIF"
-                                android:textColor="#5C6BC0"
+                                android:textColor="#11df11"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:layout_marginStart="8dp"/>
@@ -138,7 +229,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Berjalan Normal"
+                            android:text="BERJALAN NORMAL"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:layout_marginTop="8dp"/>
@@ -180,7 +271,7 @@
                                 android:background="@drawable/bg_circle_soft"
                                 android:padding="4dp"
                                 android:src="@drawable/ic_flash_on"
-                                app:tint="#7986CB"/>
+                                app:tint="@color/white"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -190,26 +281,28 @@
                             android:gravity="bottom"
                             android:layout_marginTop="16dp">
                             <TextView
+                                android:id="@+id/tvPowerValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="12.4"
+                                android:text="80"
                                 android:textColor="#191970"
                                 android:textSize="28sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" W"
+                                android:text=" %"
                                 android:textColor="#7986CB"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:layout_marginBottom="4dp"/>
                         </LinearLayout>
-
+ 
                         <TextView
+                            android:id="@+id/tvPowerStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Konsumsi rendah"
+                            android:text="KONSUMSI DAYA RENDAH"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:layout_marginTop="8dp"/>
@@ -242,7 +335,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="KONTROL PERANGKAT"
+                            android:text="KONTROL LAMPU"
                             android:textColor="#7986CB"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -283,7 +376,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="KETUK UNTUK MENGUBAH"
+                        android:text="KETUK UNTUK MENGHIDUPKAN/MEMATIKAN LAMPU"
                         android:textColor="#7986CB"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -323,12 +416,15 @@
                             android:textStyle="bold"
                             android:letterSpacing="0.1"/>
                         <TextView
+                            android:id="@+id/btnEditOperation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="✎ Ubah"
+                            android:text="✎ UBAH"
                             android:textColor="#5C6BC0"
                             android:textSize="12sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -358,10 +454,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Jadwal Aktif"
+                                android:text="JADWAL AKTIF"
                                 android:textColor="#FFFFFF"
                                 android:textSize="12sp"/>
                             <TextView
+                                android:id="@+id/tvOperationTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="18:00 — 06:00"
@@ -381,159 +478,259 @@
                         android:weightSum="7">
                         
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:id="@+id/daySenin" android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:id="@+id/daySelasa" android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="R" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:id="@+id/dayRabu" android:layout_width="40dp" android:layout_height="40dp" android:text="R" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="K" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:id="@+id/dayKamis" android:layout_width="40dp" android:layout_height="40dp" android:text="K" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="J" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button"/>
+                            <TextView android:id="@+id/dayJumat" android:layout_width="40dp" android:layout_height="40dp" android:text="J" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_power_button" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#7986CB" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft"/>
+                            <TextView android:id="@+id/daySabtu" android:layout_width="40dp" android:layout_height="40dp" android:text="S" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                         <FrameLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                            <TextView android:layout_width="40dp" android:layout_height="40dp" android:text="M" android:textColor="#7986CB" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft"/>
+                            <TextView android:id="@+id/dayMinggu" android:layout_width="40dp" android:layout_height="40dp" android:text="M" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" android:gravity="center" android:layout_gravity="center" android:background="@drawable/bg_circle_soft" android:clickable="true" android:focusable="true"/>
                         </FrameLayout>
                     </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- TONIGHT'S CATCH -->
-            <com.google.android.material.card.MaterialCardView
+
+
+        <!-- SOLAR PANEL CHARGING (NEW) -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#FFFFFF">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iconSolarNew"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_sun"
+                        app:tint="#FF9800"
+                        android:background="@drawable/bg_circle_soft"
+                        android:backgroundTint="#191970"
+                        android:padding="8dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconSolarNew"
+                        android:layout_marginStart="16dp"
+                        android:layout_centerVertical="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MENGISI DAYA PANEL SURYA"
+                            android:textColor="#191970"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tvSolarStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DAYA PENUH"
+                            android:textColor="#4CAF50"
+                            android:textSize="12sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvSolarPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100%"
+                        android:textColor="#191970"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="16dp"
+                    android:progress="100"
+                    android:progressDrawable="@drawable/bg_pill_soft" />
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0%" android:textColor="#7986CB" android:textSize="10sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="100%" android:textColor="#7986CB" android:textSize="10sp" android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ROW WITH 2 CARDS (NEW) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <!-- TRAP CONDITION -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="#FFFFFF">
-                
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="20dp"
+                    android:gravity="center">
+                    
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_nav_log"
+                        app:tint="@color/white"
+                        android:background="@drawable/bg_circle_soft"
+                        android:padding="6dp"/>
                     
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TANGKAPAN MALAM INI"
+                        android:text="KONDISI PERANGKAP"
                         android:textColor="#7986CB"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
+                        android:letterSpacing="0.1"/>
+                        
+                    <!-- Circular Indicator -->
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="12dp">
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:indeterminate="false"
+                            android:progress="50"
+                            android:max="100"
+                            android:progressDrawable="@drawable/circular_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal" />
+                        <TextView
+                            android:id="@+id/tvTrapPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50%"
+                            android:textColor="#191970"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                    
+                    <TextView
+                        android:id="@+id/tvTrapStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AMAN"
+                        android:textColor="#FFA000"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.1"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="16dp"
-                        android:weightSum="3">
-                        
-                        <!-- Col 1 -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/bg_circle_soft"
-                                android:padding="14dp"
-                                android:src="@drawable/ic_bug_report"
-                                app:tint="@color/white" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="142"
-                                android:textColor="#191970"
-                                android:textSize="28sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="8dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Insects"
-                                android:textColor="#7986CB"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-                        
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#D0D4E4" android:layout_marginVertical="12dp"/>
-
-                        <!-- Col 2 -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/bg_circle_soft"
-                                android:padding="14dp"
-                                android:src="@drawable/ic_schedule"
-                                app:tint="@color/white" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="8h"
-                                android:textColor="#191970"
-                                android:textSize="28sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="8dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Runtime"
-                                android:textColor="#7986CB"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-                        
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#D0D4E4" android:layout_marginVertical="12dp"/>
-
-                        <!-- Col 3 -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:background="@drawable/bg_badge_red"
-                                android:backgroundTint="#FFF3E0"
-                                android:padding="14dp"
-                                android:src="@drawable/ic_local_fire_department" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0.1"
-                                android:textColor="#191970"
-                                android:textSize="28sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="8dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="kWh Used"
-                                android:textColor="#7986CB"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-                    </LinearLayout>
+                        android:layout_marginTop="8dp"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- USAGE ACTIVITY -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
+                    
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_schedule"
+                        app:tint="@color/white"
+                        android:background="@drawable/bg_circle_soft"
+                        android:padding="6dp"/>
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AKTIVITAS PERANGKAP"
+                        android:textColor="#7986CB"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
+                        android:letterSpacing="0.1"/>
+                        
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5h 24m"
+                        android:textColor="#191970"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="16dp"/>
+                        
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MALAM INI"
+                        android:textColor="#7986CB"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+                        
+                    <!-- Timeline or bar -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_pill_soft"
+                        android:backgroundTint="#E8EAF6"/>
+                        
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#7986CB" android:textSize="10sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SEKARANG" android:textColor="#7986CB" android:textSize="10sp" android:layout_centerHorizontal="true"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="06:00" android:textColor="#7986CB" android:textSize="10sp" android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-    </ScrollView>
 
+    </LinearLayout>
+</ScrollView>

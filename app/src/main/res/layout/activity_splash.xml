@@ -6,52 +6,53 @@
     android:layout_height="match_parent"
     android:background="#E8EAF6">
 
-    <!-- Card Tengah -->
+    <!-- Card Tengah (Ukuran Lebih Besar) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardSplash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        app:cardCornerRadius="32dp"
+        app:cardCornerRadius="48dp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_chainStyle="packed">
+        android:layout_marginBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingTop="56dp"
-            android:paddingBottom="56dp">
+            android:paddingTop="64dp"
+            android:paddingBottom="64dp">
 
-            <!-- Ikon Lampu -->
+            <!-- Ikon Lampu Gantung (Sesuai Gambar) -->
             <ImageView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:src="@drawable/ic_app_logo" />
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/ic_lamp_trap"
+                android:scaleType="fitCenter"/>
 
             <!-- Teks LIGHT TRAP -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LIGHT\nTRAP"
-                android:textColor="#111144"
-                android:textSize="36sp"
+                android:textColor="#1A237E"
+                android:textSize="38sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.1"
+                android:letterSpacing="0.05"
                 android:textAlignment="center"
-                android:lineSpacingExtra="4dp"
+                android:lineSpacingMultiplier="0.9"
                 android:layout_marginTop="24dp"/>
 
-            <!-- Garis pemisah -->
+            <!-- Garis pemisah tipis -->
             <View
-                android:layout_width="40dp"
-                android:layout_height="2dp"
+                android:layout_width="32dp"
+                android:layout_height="1.5dp"
                 android:background="#E0E0E0"
                 android:layout_marginTop="24dp"/>
 
@@ -63,34 +64,34 @@
                 android:textColor="#7986CB"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.2"
+                android:letterSpacing="0.3"
                 android:layout_marginTop="24dp"/>
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Indikator Loading di bawah -->
+    <!-- Indikator Loading di bagian bawah -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:indeterminateTint="#8C9EFF"
-        android:layout_marginTop="64dp"
-        app:layout_constraintTop_toBottomOf="@+id/cardSplash"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoading"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
+        android:id="@+id/tvLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Loading..."
         android:textColor="#7986CB"
         android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="64dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

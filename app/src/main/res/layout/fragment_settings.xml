@@ -62,6 +62,7 @@
                     android:layout_marginTop="4dp"/>
 
                 <LinearLayout
+                    android:id="@+id/btnChangePhoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -120,6 +121,7 @@
 
                 <!-- Edit Profile -->
                 <LinearLayout
+                    android:id="@+id/btnEditProfile"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:orientation="horizontal"
@@ -182,6 +184,7 @@
                         android:layout_marginStart="16dp"/>
                     
                     <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
@@ -193,6 +196,7 @@
 
                 <!-- Change Password -->
                 <LinearLayout
+                    android:id="@+id/btnChangePassword"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:orientation="horizontal"
@@ -257,6 +261,7 @@
 
                 <!-- About Application -->
                 <LinearLayout
+                    android:id="@+id/btnAbout"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:orientation="horizontal"
@@ -294,6 +299,7 @@
 
                 <!-- Privacy Policy -->
                 <LinearLayout
+                    android:id="@+id/btnPrivacyPolicy"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:orientation="horizontal"
@@ -331,6 +337,7 @@
 
                 <!-- Terms of Use -->
                 <LinearLayout
+                    android:id="@+id/btnTermsOfUse"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:orientation="horizontal"
@@ -368,6 +375,7 @@
 
                 <!-- Help & Support -->
                 <LinearLayout
+                    android:id="@+id/btnHelpSupport"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:orientation="horizontal"

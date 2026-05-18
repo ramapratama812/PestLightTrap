@@ -317,6 +317,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/tv_durasi_siklus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="11j 30m"
@@ -380,7 +381,7 @@
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mulai" android:textColor="#7986CB" android:textSize="12sp"/>
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
                             <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_schedule" app:tint="#5C6BC0"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
+                            <TextView android:id="@+id/tv_mulai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -395,7 +396,7 @@
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Selesai" android:textColor="#7986CB" android:textSize="12sp"/>
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
                             <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_schedule" app:tint="#191970"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:30" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
+                            <TextView android:id="@+id/tv_selesai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:30" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -410,7 +411,7 @@
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Durasi" android:textColor="#7986CB" android:textSize="12sp"/>
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
                             <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_nav_log" app:tint="#191970"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="11.5j" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
+                            <TextView android:id="@+id/tv_durasi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="11.5j" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -630,6 +631,7 @@
                         android:layout_marginTop="16dp">
                         <!-- Progress indicator (Circular) -->
                         <ProgressBar
+                            android:id="@+id/pb_battery"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:indeterminate="false"
@@ -644,6 +646,7 @@
                             android:layout_centerInParent="true"
                             android:gravity="center">
                             <TextView
+                                android:id="@+id/tv_battery_percent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="85%"
@@ -692,15 +695,15 @@
                         android:weightSum="3">
                         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12.6V" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                            <TextView android:id="@+id/tv_voltage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12.6V" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
                         </LinearLayout>
                         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suhu" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="28°C" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                            <TextView android:id="@+id/tv_temp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="28°C" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
                         </LinearLayout>
                         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kesehatan" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baik" android:textColor="#5C6BC0" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                            <TextView android:id="@+id/tv_health" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baik" android:textColor="#5C6BC0" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

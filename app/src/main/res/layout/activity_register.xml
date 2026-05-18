@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Masuk ke akun Anda"
+            android:text="Buat Akun Baru"
             android:textColor="#191970"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat datang kembali di Light Trap"
+            android:text="Bergabunglah dengan Light Trap sekarang"
             android:textColor="#7986CB"
             android:textSize="14sp"
             android:layout_marginTop="8dp"
@@ -54,15 +54,54 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
-                <!-- EMAIL LABEL -->
+                <!-- NAMA LABEL -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMAIL / NAMA PENGGUNA"
+                    android:text="NAMA LENGKAP"
                     android:textColor="#7986CB"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:letterSpacing="0.1"/>
+
+                <!-- NAMA INPUT -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_input_box_rounded"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_user_outline"/>
+
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="Masukkan nama lengkap"
+                        android:textColorHint="#9FA8DA"
+                        android:textColor="#191970"
+                        android:textSize="14sp"
+                        android:inputType="textPersonName"
+                        android:layout_marginStart="12dp"/>
+                </LinearLayout>
+
+                <!-- EMAIL LABEL -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EMAIL"
+                    android:textColor="#7986CB"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:layout_marginTop="20dp"/>
 
                 <!-- EMAIL INPUT -->
                 <LinearLayout
@@ -77,7 +116,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_user_outline" />
+                        android:src="@drawable/ic_user_outline"/>
 
                     <EditText
                         android:id="@+id/etEmail"
@@ -116,7 +155,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_lock_outline" />
+                        android:src="@drawable/ic_lock_outline"/>
 
                     <EditText
                         android:id="@+id/etPassword"
@@ -124,7 +163,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:hint="Masukkan kata sandi"
+                        android:hint="Buat kata sandi"
                         android:textColorHint="#9FA8DA"
                         android:textColor="#191970"
                         android:textSize="14sp"
@@ -135,62 +174,73 @@
                         android:id="@+id/ivTogglePassword"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_eye_outline" />
+                        android:src="@drawable/ic_eye_outline"/>
                 </LinearLayout>
 
-                <!-- LOGIN BUTTON -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnLogin"
+                <!-- KONFIRMASI PASSWORD LABEL -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KONFIRMASI KATA SANDI"
+                    android:textColor="#7986CB"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:layout_marginTop="20dp"/>
+
+                <!-- KONFIRMASI PASSWORD INPUT -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="Masuk  →"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_input_box_rounded"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_lock_outline"/>
+
+                    <EditText
+                        android:id="@+id/etConfirmPassword"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="Ulangi kata sandi"
+                        android:textColorHint="#9FA8DA"
+                        android:textColor="#191970"
+                        android:textSize="14sp"
+                        android:inputType="textPassword"
+                        android:layout_marginStart="12dp"/>
+
+                    <ImageView
+                        android:id="@+id/ivToggleConfirmPassword"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_eye_outline"/>
+                </LinearLayout>
+
+                <!-- REGISTER BUTTON -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Daftar Sekarang  →"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
                     app:cornerRadius="16dp"
                     app:backgroundTint="#191970"
                     android:textColor="#FFFFFF"
-                    android:layout_marginTop="24dp" />
-
-                <!-- OR USE DIVIDER -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="24dp">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="1dp"
-                        android:background="#E8EAF6"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ATAU"
-                        android:textColor="#7986CB"
-                        android:textSize="10sp"
-                        android:layout_marginHorizontal="12dp"
-                        android:textStyle="bold"/>
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="1dp"
-                        android:background="#E8EAF6"/>
-                </LinearLayout>
-
-                <!-- GOOGLE BUTTON -->
-                <com.google.android.gms.common.SignInButton
-                    android:id="@+id/btn_google_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp" />
+                    android:layout_marginTop="24dp"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- REGISTER TEXT -->
+        <!-- LOGIN TEXT -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -200,14 +250,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Belum punya akun? "
+                android:text="Sudah punya akun? "
                 android:textColor="#7986CB"
                 android:textSize="14sp"/>
             <TextView
-                android:id="@+id/tvDaftarSekarang"
+                android:id="@+id/tvLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daftar Sekarang"
+                android:text="Masuk"
                 android:textColor="#5C6BC0"
                 android:textSize="14sp"
                 android:textStyle="bold"

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1087535513928",
+    "firebase_url": "https://smart-pest-trap-81a41-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smart-pest-trap-81a41",
+    "storage_bucket": "smart-pest-trap-81a41.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087535513928:android:f938f4a05592944ce2737d",
+        "android_client_info": {
+          "package_name": "com.pebelti.pestlighttrap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087535513928-lroaubgo629q5s7b30a9p1765jro979q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pebelti.pestlighttrap",
+            "certificate_hash": "69c4371f14d84eb2a7ec031467d3545952b87238"
+          }
+        },
+        {
+          "client_id": "1087535513928-qqfqnbuuk2346ek9h4nj7tl1k4gk71d5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7ouZgJakVm7Q9wnQX5JpQQFdp9YHzn_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087535513928-qqfqnbuuk2346ek9h4nj7tl1k4gk71d5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
