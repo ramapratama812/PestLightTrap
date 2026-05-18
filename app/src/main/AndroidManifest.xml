@@ -32,13 +32,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".NightModeMonitorActivity"
-            android:exported="false" />
 
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

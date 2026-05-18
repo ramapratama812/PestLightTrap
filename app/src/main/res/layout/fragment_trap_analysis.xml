@@ -1,875 +1,836 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8EAF6"
-    android:fillViewport="true">
+    android:background="#E8EAF6">
 
-    <LinearLayout
+    <!-- Scrollable Content -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <!-- HEADER -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp">
-
-            <ImageView
-                android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_circle_soft"
-                android:backgroundTint="#FFFFFF"
-                android:padding="12dp"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="#191970"
-                android:elevation="2dp"
-                android:clickable="true"
-                android:focusable="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Operation Log"
-                android:textColor="#191970"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/btnBack"
-                android:layout_marginStart="16dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_pill_soft"
-                android:backgroundTint="#FFFFFF"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="8dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:elevation="1dp">
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_calendar"
-                    app:tint="#5C6BC0"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mon, 15 Jul"
-                    android:textColor="#191970"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </RelativeLayout>
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_tab_container"
-            android:orientation="horizontal"
-            android:padding="4dp"
-            android:layout_marginBottom="24dp">
-            
-            <LinearLayout
-                android:id="@+id/tabTrap"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_tab_active"
-                android:paddingVertical="12dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true">
-                <ImageView
-                    android:id="@+id/ivTabTrap"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_nav_log"
-                    app:tint="#FFFFFF"/>
-                <TextView
-                    android:id="@+id/tvTabTrap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TRAP"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="8dp"
-                    android:letterSpacing="0.1"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/tabBattery"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingVertical="12dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true">
-                <ImageView
-                    android:id="@+id/ivTabBattery"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_battery_outline"
-                    app:tint="#7986CB"/>
-                <TextView
-                    android:id="@+id/tvTabBattery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BATERAI"
-                    android:textColor="#7986CB"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="8dp"
-                    android:letterSpacing="0.1"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- TRAP CONTENT CONTAINER -->
-        <LinearLayout
-            android:id="@+id/layoutTrapContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:padding="20dp">
 
-        <!-- STATUS CARDS ROW -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
-
-            <!-- NIGHT CARD -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
+            <!-- HEADER -->
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_marginBottom="24dp">
+
+                <ImageView
+                    android:id="@+id/btnBackAnalytics"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_circle_soft"
+                    android:backgroundTint="#FFFFFF"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="#191970"
+                    android:elevation="2dp"/>
+
+                <TextView
+                    android:id="@+id/tvAnalyticsTitle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    android:gravity="center">
+                    android:text="ANALISIS PERANGKAP"
+                    android:textColor="#191970"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/btnBackAnalytics"
+                    android:layout_marginStart="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_pill_soft"
+                    android:backgroundTint="#FFFFFF"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:elevation="1dp">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_moon"
-                        app:tint="@color/white"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="8dp"/>
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="@color/purple_accent"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MALAM"
-                        android:textColor="#7986CB"
+                        android:text="BULAN INI"
+                        android:textColor="#191970"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="12dp"
-                        android:letterSpacing="0.1"/>
-                    <LinearLayout
+                        android:layout_marginStart="8dp"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- TAB SWITCHER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tab_container"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_marginBottom="24dp">
+                
+                <LinearLayout
+                    android:id="@+id/tabTrapAnalytics"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_tab_active"
+                    android:paddingVertical="12dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <ImageView
+                        android:id="@+id/ivTabTrapAnal"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_nav_log"
+                        app:tint="@color/white"/>
+                    <TextView
+                        android:id="@+id/tvTabTrapAnal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="4dp">
+                        android:text="PERANGKAP"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:letterSpacing="0.1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabBatteryAnalytics"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingVertical="12dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <ImageView
+                        android:id="@+id/ivTabBattAnal"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_battery_outline"
+                        app:tint="@color/purple_soft"/>
+                    <TextView
+                        android:id="@+id/tvTabBattAnal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BATERAI"
+                        android:textColor="@color/purple_soft"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:letterSpacing="0.1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- TRAP ANALYTICS CONTENT -->
+            <LinearLayout
+                android:id="@+id/layoutTrapAnalyticsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- WEEKLY CATCH YIELD CARD -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LAPORAN MINGGUAN"
+                            android:textColor="#7986CB"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SENIN, 19 MEI 2026"
+                            android:textColor="#9FA8DA"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barChartPest"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_marginTop="24dp"/>
+
+                        <!-- SMALL CARDS ROW INSIDE MAIN CARD -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="24dp"
+                            android:weightSum="2">
+                            
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_box_rounded"
+                                android:backgroundTint="#F5F6FF"
+                                android:padding="16dp"
+                                android:layout_marginEnd="8dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="STATUS KAPASITAS"
+                                    android:textColor="#7986CB"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="100%"
+                                    android:textColor="#191970"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="4dp"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="4dp">
                                     <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Sehat"
-                                        android:textColor="#5C6BC0"
+                                        android:text="PENUH"
+                                        android:textColor="#191970"
                                         android:textSize="12sp"
                                         android:layout_marginStart="6dp"/>
-                    </LinearLayout>
-                    <!-- Green border indicator at bottom -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:background="#5C6BC0"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginHorizontal="-20dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                                </LinearLayout>
+                            </LinearLayout>
 
-            <!-- DAY CARD -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_sun"
-                        app:tint="@color/white"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="8dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SIANG"
-                        android:textColor="#7986CB"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="12dp"
-                        android:letterSpacing="0.1"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="4dp">
-                        <View
-                            android:layout_width="8dp"
-                            android:layout_height="8dp"
-                            android:background="@drawable/bg_circle_soft"
-                            android:backgroundTint="#9FA8DA"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="LOG OPERASIONAL"
-                            android:textColor="#7986CB"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="6dp"/>
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:background="@android:color/transparent"
-                        android:layout_marginTop="16dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <!-- ACTIVITY LOG CARD -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="#FFFFFF">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
-                
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/iconLog"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_moon"
-                        app:tint="@color/white"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="6dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Log Aktivitas Malam"
-                        android:textColor="#191970"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/iconLog"
-                        android:layout_marginStart="12dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7 Hari Terakhir"
-                        android:textColor="@color/white"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_pill_soft"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tv_durasi_siklus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="11j 30m"
-                    android:textColor="#191970"
-                    android:textSize="48sp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginTop="24dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Durasi Siklus Terakhir"
-                    android:textColor="#7986CB"
-                    android:textSize="14sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="24dp"/>
-
-                <!-- Custom Timeline -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/bg_pill_soft"
-                        android:layout_centerVertical="true">
-                        <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.5" />
-                        <View 
-                            android:layout_width="0dp" 
-                            android:layout_height="match_parent" 
-                            android:layout_weight="1" 
-                            android:background="@drawable/bg_tab_active"/>
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00" android:textColor="#7986CB" android:textSize="12sp" android:textStyle="bold"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#5C6BC0" android:textSize="14sp" android:textStyle="bold" android:layout_centerHorizontal="true"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:30" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_alignParentEnd="true"/>
-                </RelativeLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E8EAF6" android:layout_marginBottom="24dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-                    
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mulai" android:textColor="#7986CB" android:textSize="12sp"/>
-                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
-                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_schedule" app:tint="#5C6BC0"/>
-                            <TextView android:id="@+id/tv_mulai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_box_rounded"
+                                android:backgroundTint="#F5F6FF"
+                                android:padding="16dp"
+                                android:layout_marginStart="8dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="JARAK PERMUKAAN"
+                                    android:textColor="#7986CB"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="50 / 20 cm"
+                                    android:textColor="#191970"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="4dp"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginTop="4dp">
+                                    <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="KOSONG"
+                                        android:textColor="#191970"
+                                        android:textSize="12sp"
+                                        android:layout_marginStart="6dp"/>
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#E8EAF6"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Selesai" android:textColor="#7986CB" android:textSize="12sp"/>
-                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
-                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_schedule" app:tint="#191970"/>
-                            <TextView android:id="@+id/tv_selesai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:30" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#E8EAF6"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Durasi" android:textColor="#7986CB" android:textSize="12sp"/>
-                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
-                            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_nav_log" app:tint="#191970"/>
-                            <TextView android:id="@+id/tv_durasi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="11.5j" android:textColor="#191970" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="4dp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- RECENT CYCLES -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="6dp"
-            app:cardBackgroundColor="#FFFFFF">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
-                
-                <RelativeLayout
+                <!-- TOP CATCH DAYS CARD -->
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SIKLUS TERBARU"
-                        android:textColor="#7986CB"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="☰ 3 rekaman"
-                        android:textColor="#7986CB"
-                        android:textSize="12sp"
-                        android:layout_alignParentEnd="true"/>
-                </RelativeLayout>
-
-                <!-- Item 1 -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="12dp">
-                    <ImageView
-                        android:id="@+id/iconItem1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_moon"
-                        app:tint="@color/white"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="8dp"/>
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_toEndOf="@id/iconItem1"
-                        android:layout_marginStart="16dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Min, 14 Jul"
-                            android:textColor="#191970"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="11j 30m"
-                            android:textColor="#7986CB"
-                            android:textSize="14sp"/>
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OK"
-                        android:textColor="#5C6BC0"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_badge_green"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="6dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-                </RelativeLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E8EAF6" android:layout_marginVertical="4dp"/>
-
-                <!-- Item 2 -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="12dp">
-                    <ImageView
-                        android:id="@+id/iconItem2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_moon"
-                        app:tint="@color/white"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="8dp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_toEndOf="@id/iconItem2"
-                        android:layout_marginStart="16dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sab, 13 Jul"
-                            android:textColor="#191970"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10j 45m"
-                            android:textColor="#7986CB"
-                            android:textSize="14sp"/>
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OK"
-                        android:textColor="#5C6BC0"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_badge_green"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="6dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-                </RelativeLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E8EAF6" android:layout_marginVertical="4dp"/>
-
-                <!-- Item 3 -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="12dp">
-                    <ImageView
-                        android:id="@+id/iconItem3"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_moon"
-                        app:tint="@color/white"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="8dp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_toEndOf="@id/iconItem3"
-                        android:layout_marginStart="16dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jum, 12 Jul"
-                            android:textColor="#191970"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="11j 00m"
-                            android:textColor="#7986CB"
-                            android:textSize="14sp"/>
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="OK"
-                        android:textColor="#5C6BC0"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_badge_green"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="6dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-                </RelativeLayout>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-
-    <!-- BATTERY CONTENT CONTAINER -->
-    <LinearLayout
-            android:id="@+id/layoutBatteryContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <!-- BATTERY STATUS CARD -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="8dp"
-                app:cardBackgroundColor="#FFFFFF">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="24dp"
-                    android:gravity="center">
-                    
-                    <RelativeLayout
-                        android:layout_width="160dp"
-                        android:layout_height="160dp"
-                        android:layout_marginTop="16dp">
-                        <!-- Progress indicator (Circular) -->
-                        <ProgressBar
-                            android:id="@+id/pb_battery"
+                        android:padding="24dp">
+                        
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:indeterminate="false"
-                            android:progress="85"
-                            android:max="100"
-                            android:progressDrawable="@drawable/circular_progress_bar"
-                            style="?android:attr/progressBarStyleHorizontal" />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_centerInParent="true"
-                            android:gravity="center">
+                            android:layout_marginBottom="16dp">
                             <TextView
-                                android:id="@+id/tv_battery_percent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="85%"
-                                android:textColor="@color/white"
-                                android:textSize="40sp"
+                                android:text="LAPORAN HARIAN"
+                                android:textColor="#7986CB"
+                                android:textSize="14sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Terisi"
-                                android:textColor="#7986CB"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-                    </RelativeLayout>
+                                android:text="MINGGU INI"
+                                android:textColor="#9FA8DA"
+                                android:textSize="12sp"
+                                android:layout_alignParentEnd="true"/>
+                        </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="24dp"
-                        android:background="@drawable/bg_pill_soft"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="8dp">
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:src="@drawable/ic_charging"
-                            app:tint="@color/white"/>
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <!-- ITEM 1 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Mengisi dari Tenaga Surya"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="8dp"/>
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="12dp">
+                            <TextView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_circle_soft"
+                                android:backgroundTint="#3F51B5"
+                                android:text="1"
+                                android:textColor="#FFFFFF"
+                                android:gravity="center"
+                                android:textStyle="bold"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SENIN"
+                                        android:textColor="#191970"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="20%"
+                                        android:textColor="#191970"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:layout_alignParentEnd="true"/>
+                                </RelativeLayout>
+                                <ProgressBar
+                                    style="@android:style/Widget.ProgressBar.Horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="8dp"
+                                    android:progress="100"
+                                    android:progressDrawable="@drawable/bg_progress_fill_blue"
+                                    android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- ITEM 2 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="12dp">
+                            <TextView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_circle_soft"
+                                android:backgroundTint="#E8EAF6"
+                                android:text="2"
+                                android:textColor="#191970"
+                                android:gravity="center"
+                                android:textStyle="bold"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="KAMIS"
+                                        android:textColor="#191970"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="10%"
+                                        android:textColor="#191970"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:layout_alignParentEnd="true"/>
+                                </RelativeLayout>
+                                <ProgressBar
+                                    style="@android:style/Widget.ProgressBar.Horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="8dp"
+                                    android:progress="85"
+                                    android:progressDrawable="@drawable/bg_progress_fill_blue"
+                                    android:layout_marginTop="8dp"
+                                    android:alpha="0.6"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- ITEM 3 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingVertical="12dp">
+                            <TextView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_circle_soft"
+                                android:backgroundTint="#E8EAF6"
+                                android:text="3"
+                                android:textColor="#191970"
+                                android:gravity="center"
+                                android:textStyle="bold"/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="16dp">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="SELASA"
+                                        android:textColor="#191970"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="30%"
+                                        android:textColor="#191970"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:layout_alignParentEnd="true"/>
+                                </RelativeLayout>
+                                <ProgressBar
+                                    style="@android:style/Widget.ProgressBar.Horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="8dp"
+                                    android:progress="70"
+                                    android:progressDrawable="@drawable/bg_progress_fill_blue"
+                                    android:layout_marginTop="8dp"
+                                    android:alpha="0.4"/>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E8EAF6" android:layout_marginVertical="24dp"/>
+            <!-- BATTERY ANALYTICS CONTENT -->
+            <LinearLayout
+                android:id="@+id/layoutBatteryAnalyticsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
-                        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tegangan" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:id="@+id/tv_voltage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12.6V" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
-                        </LinearLayout>
-                        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suhu" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:id="@+id/tv_temp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="28°C" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
-                        </LinearLayout>
-                        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kesehatan" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:id="@+id/tv_health" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Baik" android:textColor="#5C6BC0" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- SOLAR PANEL CARD -->
+            <!-- MAIN CAPACITY CARD -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="6dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="#FFFFFF">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
-                    
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:id="@+id/iconSolar"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_solar_panel"
-                            app:tint="#FF9800"
-                            android:background="@drawable/bg_circle_soft"
-                            android:backgroundTint="#FFF3E0"
-                            android:padding="6dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Efisiensi Tenaga Surya"
-                            android:textColor="#191970"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@id/iconSolar"
-                            android:layout_marginStart="12dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Optimal"
-                            android:textColor="#5C6BC0"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:background="@drawable/bg_badge_green"
-                            android:paddingHorizontal="10dp"
-                            android:paddingVertical="4dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"/>
-                    </RelativeLayout>
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="24dp"
                         android:gravity="center_vertical">
-                        <LinearLayout
+
+                        <TextView
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Output Saat Ini"
-                                android:textColor="#7986CB"
-                                android:textSize="12sp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="15.8W"
-                                android:textColor="#191970"
-                                android:textSize="24sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp"/>
-                        </LinearLayout>
-                        <View android:layout_width="1dp" android:layout_height="40dp" android:background="#E8EAF6" android:layout_marginHorizontal="16dp"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Panen Hari Ini"
-                                android:textColor="#7986CB"
-                                android:textSize="12sp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="142 Wh"
-                                android:textColor="#191970"
-                                android:textSize="24sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="4dp"/>
-                        </LinearLayout>
+                            android:text="STATUS KAPASITAS BATERAI"
+                            android:textColor="#7986CB"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1"/>
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_badge_green"
+                            android:backgroundTint="#F0FDF4"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_battery_outline" />
                     </LinearLayout>
 
-                    <ProgressBar
-                        style="@android:style/Widget.ProgressBar.Horizontal"
+                    <!-- PIE CHART -->
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChartBattery"
                         android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:progress="75"
-                        android:progressDrawable="@drawable/bg_progress_fill_blue"
-                        android:layout_marginTop="24dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- BOTTOM STATS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="75% Efficiency based on weather"
-                        android:textColor="#7986CB"
-                        android:textSize="12sp"
-                        android:layout_marginTop="8dp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:weightSum="3"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="13.2V"
+                                android:textColor="#191970"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TEGANGAN"
+                                android:textColor="#7986CB"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!-- NORMAL BADGE -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_badge_green"
+                                android:backgroundTint="#5C6BC0"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="8dp"
+                                android:gravity="center_vertical">
+                                <View
+                                    android:layout_width="8dp"
+                                    android:layout_height="8dp"
+                                    android:background="@drawable/dot_green"
+                                    android:backgroundTint="#FFFFFF"
+                                    android:layout_marginEnd="6dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="NORMAL"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="end">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="12H"
+                                android:textColor="#191970"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EST. MASA PAKAI"
+                                android:textColor="#7986CB"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ESTIMATED TIME CARD -->
+            <!-- ROW OF SMALL CARDS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <!-- PANEL ANALYSIS -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="ANALISIS PANEL"
+                                android:textColor="#7986CB"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.1"/>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/bg_badge_red"
+                                android:backgroundTint="#FFF3E0"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_solar_panel" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EFISIENSI"
+                            android:textColor="#7986CB"
+                            android:textSize="12sp"
+                            android:layout_marginTop="12dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="92%"
+                            android:textColor="#191970"
+                            android:textSize="24sp"
+                            android:textStyle="bold"/>
+
+                        <!-- Custom Progress Bar -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="8dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_progress_track"/>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_progress_fill_green"
+                                android:layout_marginEnd="20dp"/> <!-- Simulates 90% -->
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PUNCAK: 12:00"
+                            android:textColor="#7986CB"
+                            android:textSize="10sp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- BATTERY % -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="BATERAI %"
+                                android:textColor="#7986CB"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.1"/>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:background="@drawable/bg_badge_green"
+                                android:backgroundTint="#F0FDF4"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_battery_outline" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SIKLUS"
+                            android:textColor="#7986CB"
+                            android:textSize="12sp"
+                            android:layout_marginTop="12dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85%"
+                            android:textColor="#191970"
+                            android:textSize="24sp"
+                            android:textStyle="bold"/>
+
+                        <!-- Custom Progress Bar -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="8dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_progress_track"/>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_progress_fill_blue"
+                                android:layout_marginEnd="30dp"/> <!-- Simulates 80% -->
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="STATUS: 6.5 JAM"
+                            android:textColor="#7986CB"
+                            android:textSize="10sp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- CHARGE HISTORY -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="#FFFFFF">
+                
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="24dp"
-                    android:gravity="center_vertical">
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_schedule"
-                        app:tint="#5C6BC0"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="10dp"/>
+                    android:orientation="vertical"
+                    android:padding="20dp">
+                    
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="Estimated Time to Full"
+                            android:text="RIWAYAT PENGISIAN"
                             android:textColor="#7986CB"
-                            android:textSize="14sp"/>
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1"/>
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/bg_circle_soft"
+                            android:backgroundTint="#7986CB"
+                            android:layout_marginEnd="6dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1h 45m"
-                            android:textColor="#191970"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="4dp"/>
+                            android:text="MINGGU INI"
+                            android:textColor="#7986CB"
+                            android:textSize="12sp"
+                            android:textStyle="bold"/>
                     </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChartHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="16dp" />
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

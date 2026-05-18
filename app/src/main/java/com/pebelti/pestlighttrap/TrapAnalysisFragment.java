@@ -42,7 +42,7 @@ public class TrapAnalysisFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_trap_analysis, container, false);
+        View view = inflater.inflate(R.layout.fragment_trap_monitoring, container, false);
 
         // 1. Bind Views (Trap)
         tvDurasiSiklus = view.findViewById(R.id.tv_durasi_siklus);
@@ -147,6 +147,7 @@ public class TrapAnalysisFragment extends Fragment {
         TextView tvTabBattery = view.findViewById(R.id.tvTabBattery);
 
         tabTrap.setOnClickListener(v -> {
+            android.transition.TransitionManager.beginDelayedTransition((android.view.ViewGroup) view);
             layoutTrapContent.setVisibility(View.VISIBLE);
             layoutBatteryContent.setVisibility(View.GONE);
             
@@ -160,6 +161,7 @@ public class TrapAnalysisFragment extends Fragment {
         });
 
         tabBattery.setOnClickListener(v -> {
+            android.transition.TransitionManager.beginDelayedTransition((android.view.ViewGroup) view);
             layoutTrapContent.setVisibility(View.GONE);
             layoutBatteryContent.setVisibility(View.VISIBLE);
             

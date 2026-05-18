@@ -32,7 +32,7 @@ public class BatteryMonitoringFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_battery_monitoring, container, false);
+        View view = inflater.inflate(R.layout.fragment_trap_analysis, container, false);
 
         pieChart = view.findViewById(R.id.pieChartBattery);
         barChartHistory = view.findViewById(R.id.barChartHistory);
@@ -56,7 +56,7 @@ public class BatteryMonitoringFragment extends Fragment {
         TextView tvTitle = view.findViewById(R.id.tvAnalyticsTitle);
 
         tabTrap.setOnClickListener(v -> {
-            tvTitle.setText("Analisis Trap");
+            tvTitle.setText("ANALISIS PERANGKAP");
             layoutTrapContent.setVisibility(View.VISIBLE);
             layoutBatteryContent.setVisibility(View.GONE);
             tabTrap.setBackgroundResource(R.drawable.bg_tab_active);
@@ -68,7 +68,7 @@ public class BatteryMonitoringFragment extends Fragment {
         });
 
         tabBattery.setOnClickListener(v -> {
-            tvTitle.setText("Analisis Baterai");
+            tvTitle.setText("ANALISIS BATERAI");
             layoutTrapContent.setVisibility(View.GONE);
             layoutBatteryContent.setVisibility(View.VISIBLE);
             tabBattery.setBackgroundResource(R.drawable.bg_tab_active);
@@ -122,7 +122,7 @@ public class BatteryMonitoringFragment extends Fragment {
         xAxis.setDrawAxisLine(false);
         xAxis.setTextColor(Color.parseColor("#7986CB"));
         xAxis.setTextSize(9f);
-        String[] days = new String[]{"4.5kg\nMON", "3.2kg\nTUE", "2.9kg\nWED", "4.1kg\nTHU", "3.4kg\nFRI", "2.5kg\nSAT", "2.0kg\nSUN"};
+        String[] days = new String[]{"SEN", "SEL", "RAB", "KAM", "JUM", "SAB", "MIN"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setLabelCount(7);
         xAxis.setYOffset(10f);
