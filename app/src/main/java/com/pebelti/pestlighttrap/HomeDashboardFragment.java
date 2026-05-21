@@ -30,6 +30,7 @@ public class HomeDashboardFragment extends Fragment {
     private View statusIndicator;
     private TextView tvToggleBadge;
     private boolean isDeviceOn = true;
+    private boolean isAutoMode = true;
 
     private String startTime = "18:00";
     private String endTime = "06:00";
@@ -40,6 +41,7 @@ public class HomeDashboardFragment extends Fragment {
     private DatabaseReference batteryRef;
     private DatabaseReference trapRef;
     private DatabaseReference powerRef;
+    private DatabaseReference autoModeRef;
     
     private TextView[] days;
     private TextView tvOperationTime;
@@ -57,11 +59,12 @@ public class HomeDashboardFragment extends Fragment {
 
         // Inisialisasi Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        deviceRef = database.getReference("device_status");
+        deviceRef = database.getReference("smart_pest_trap/status");
         operationRef = database.getReference("operation_mode");
         batteryRef = database.getReference("battery");
         trapRef = database.getReference("trap_fullness");
         powerRef = database.getReference("power_consumption");
+        autoModeRef = database.getReference("auto_mode");
 
         // Baca status dari Firebase
         deviceRef.addValueEventListener(new ValueEventListener() {
@@ -84,6 +87,22 @@ public class HomeDashboardFragment extends Fragment {
             }
         });
 
+        // Baca mode otomatis dari Firebase
+        autoModeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Boolean isAuto = snapshot.getValue(Boolean.class);
+                    if (isAuto != null) {
+                        isAutoMode = isAuto;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
         btnNotifications.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new NotificationsFragment())
@@ -91,9 +110,55 @@ public class HomeDashboardFragment extends Fragment {
                     .commit();
         });
 
+        // Set yesterday's date dynamically for the history card
+        TextView tvHistoryItemDate = view.findViewById(R.id.tvHistoryItemDate);
+        TextView tvHistoryBadge = view.findViewById(R.id.tvHistoryBadge);
+        Calendar historyCalendar = Calendar.getInstance();
+        historyCalendar.add(Calendar.DAY_OF_YEAR, -1);
+
+        if (tvHistoryItemDate != null) {
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEEE, d MMM", new java.util.Locale("id", "ID"));
+            String yesterdayStr = "• " + dateFormat.format(historyCalendar.getTime()).toUpperCase();
+            tvHistoryItemDate.setText(yesterdayStr);
+        }
+        if (tvHistoryBadge != null) {
+            java.text.SimpleDateFormat badgeFormat = new java.text.SimpleDateFormat("d MMM", new java.util.Locale("id", "ID"));
+            String badgeStr = badgeFormat.format(historyCalendar.getTime()).toUpperCase();
+            tvHistoryBadge.setText(badgeStr);
+        }
+
+        // Click listener for Selengkapnya button and Card
+        View btnMoreHistory = view.findViewById(R.id.btnMoreHistory);
+        if (btnMoreHistory != null) {
+            btnMoreHistory.setOnClickListener(v -> {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new HistoryDetailFragment())
+                        .addToBackStack(null)
+                        .commit();
+            });
+        }
+
+        View cardTrapHistory = view.findViewById(R.id.cardTrapHistory);
+        if (cardTrapHistory != null) {
+            cardTrapHistory.setOnClickListener(v -> {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new HistoryDetailFragment())
+                        .addToBackStack(null)
+                        .commit();
+            });
+        }
+
+
+
         // Klik tombol toggle -> Update ke Firebase
         btnToggleDevice.setOnClickListener(v -> {
-            deviceRef.setValue(!isDeviceOn);
+            if (isAutoMode) {
+                if (getContext() != null) {
+                    Toast.makeText(getContext(), "MODE OTOMATIS AKTIF! SILAKAN NONAKTIFKAN DI PENGATURAN UNTUK KONTROL MANUAL.", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                deviceRef.setValue(!isDeviceOn);
+            }
         });
 
         setupModeOperasi(view);
