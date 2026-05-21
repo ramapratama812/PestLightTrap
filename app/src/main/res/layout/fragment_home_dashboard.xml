@@ -86,6 +86,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     
+                    <!-- Day/Night Icon -->
+                    <FrameLayout
+                        android:id="@+id/layoutDayNight"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_circle_soft"
+                        android:backgroundTint="#191970"
+                        android:padding="8dp">
+                        <ImageView
+                            android:id="@+id/ivDayNight"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_moon"
+                            app:tint="#FFD54F"/>
+                    </FrameLayout>
+                    
                     <!-- Date -->
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -93,6 +111,8 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/layoutDayNight"
+                        android:layout_marginEnd="16dp"
                         android:layout_centerVertical="true">
                         <ImageView
                             android:layout_width="20dp"
@@ -109,33 +129,13 @@
                             android:textSize="14sp"
                             android:textStyle="bold"/>
                     </LinearLayout>
-                    
-                    <!-- Day/Night Icon -->
-                    <FrameLayout
-                        android:id="@+id/layoutDayNight"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/bg_circle_soft"
-                        android:backgroundTint="#191970"
-                        android:padding="8dp">
-                        <ImageView
-                            android:id="@+id/ivDayNight"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_moon"
-                            app:tint="#FFD54F"/>
-                    </FrameLayout>
                 </RelativeLayout>
 
                 <!-- Time -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
-                    android:gravity="bottom">
+                    android:layout_marginTop="16dp">
                     <TextView
                         android:id="@+id/tvTime"
                         android:layout_width="wrap_content"
@@ -143,7 +143,9 @@
                         android:text="18:30"
                         android:textColor="#191970"
                         android:textSize="48sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        android:includeFontPadding="false"/>
                     <TextView
                         android:id="@+id/tvAmPm"
                         android:layout_width="wrap_content"
@@ -152,9 +154,11 @@
                         android:textColor="#7986CB"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        android:layout_toEndOf="@id/tvTime"
+                        android:layout_alignBaseline="@id/tvTime"
                         android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp"/>
-                </LinearLayout>
+                        android:includeFontPadding="false"/>
+                </RelativeLayout>
                 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -206,7 +210,7 @@
                 <!-- History Image/Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="200dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
                     app:cardPreventCornerOverlap="false">
@@ -306,15 +310,10 @@
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="44dp"
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
                             android:layout_marginTop="16dp">
-                            <View
-                                android:id="@+id/statusIndicator"
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:background="@drawable/dot_green"/>
                             <TextView
                                 android:id="@+id/tvDeviceStatus"
                                 android:layout_width="wrap_content"
@@ -322,7 +321,12 @@
                                 android:text="AKTIF"
                                 android:textColor="#11df11"
                                 android:textSize="18sp"
-                                android:textStyle="bold"
+                                android:textStyle="bold"/>
+                            <View
+                                android:id="@+id/statusIndicator"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/dot_green"
                                 android:layout_marginStart="8dp"/>
                         </LinearLayout>
 
@@ -376,7 +380,7 @@
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="44dp"
                             android:orientation="horizontal"
                             android:gravity="bottom"
                             android:layout_marginTop="16dp">
@@ -387,7 +391,8 @@
                                 android:text="80"
                                 android:textColor="#191970"
                                 android:textSize="28sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:includeFontPadding="false"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -395,7 +400,8 @@
                                 android:textColor="#7986CB"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
-                                android:layout_marginBottom="4dp"/>
+                                android:layout_marginBottom="2dp"
+                                android:includeFontPadding="false"/>
                         </LinearLayout>
  
                         <TextView

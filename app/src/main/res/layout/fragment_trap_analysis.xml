@@ -782,7 +782,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="32dp"
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="#FFFFFF">
                 
@@ -790,7 +790,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp">
                     
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -803,7 +803,7 @@
                             android:layout_height="wrap_content"
                             android:text="RIWAYAT PENGISIAN"
                             android:textColor="#7986CB"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="bold"
                             android:letterSpacing="0.1"/>
                         <View
@@ -820,12 +820,12 @@
                             android:textSize="12sp"
                             android:textStyle="bold"/>
                     </LinearLayout>
-
+ 
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/barChartHistory"
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="16dp" />
+                        android:layout_height="220dp"
+                        android:layout_marginTop="24dp" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

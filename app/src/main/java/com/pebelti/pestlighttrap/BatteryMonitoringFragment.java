@@ -169,7 +169,7 @@ public class BatteryMonitoringFragment extends Fragment {
         pieChart.setTransparentCircleRadius(80f);
         pieChart.setTransparentCircleColor(Color.parseColor("#E8F5E9")); // Warna lingkaran transparan di dalam
         pieChart.setTransparentCircleAlpha(110);
-        pieChart.setCenterText("70%\nCharged");
+        pieChart.setCenterText("70%\nTerisi");
         pieChart.setCenterTextSize(28f);
         pieChart.setCenterTextColor(Color.parseColor("#191970"));
         pieChart.setDrawEntryLabels(false);
@@ -191,11 +191,19 @@ public class BatteryMonitoringFragment extends Fragment {
         entries.add(new BarEntry(6, 80f));
 
         BarDataSet dataSet = new BarDataSet(entries, "History");
-        dataSet.setColor(Color.parseColor("#7986CB"));
-        dataSet.setDrawValues(false);
+        dataSet.setColor(Color.parseColor("#5C6BC0"));
+        dataSet.setDrawValues(true);
+        dataSet.setValueTextColor(Color.parseColor("#191970"));
+        dataSet.setValueTextSize(10f);
+        dataSet.setValueFormatter(new com.github.mikephil.charting.formatter.ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return (int) value + "%";
+            }
+        });
 
         BarData data = new BarData(dataSet);
-        data.setBarWidth(0.6f);
+        data.setBarWidth(0.5f);
         barChartHistory.setData(data);
 
         // Styling X-Axis
@@ -204,33 +212,31 @@ public class BatteryMonitoringFragment extends Fragment {
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
         xAxis.setTextColor(Color.parseColor("#7986CB"));
-        xAxis.setTextSize(10f);
-        String[] days = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        xAxis.setTextSize(9f);
+        String[] days = new String[]{"SEN", "SEL", "RAB", "KAM", "JUM", "SAB", "MIN"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setLabelCount(7);
+        xAxis.setYOffset(10f);
 
         // Styling Y-Axis Kiri
         YAxis leftAxis = barChartHistory.getAxisLeft();
         leftAxis.setDrawAxisLine(false);
         leftAxis.setGridColor(Color.parseColor("#E8EAF6"));
-        leftAxis.setTextColor(Color.parseColor("#7986CB"));
-        leftAxis.setTextSize(10f);
+        leftAxis.setGridLineWidth(1f);
+        leftAxis.enableGridDashedLine(10f, 10f, 0f);
+        leftAxis.setTextColor(Color.parseColor("#9FA8DA"));
+        leftAxis.setTextSize(9f);
         leftAxis.setAxisMinimum(0f);
-        leftAxis.setAxisMaximum(100f);
-        leftAxis.setLabelCount(3, true); // Hanya tampilkan 0, 50, 100
-        leftAxis.setValueFormatter(new com.github.mikephil.charting.formatter.ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return (int) value + "%";
-            }
-        });
+        leftAxis.setAxisMaximum(120f);
+        leftAxis.setLabelCount(5);
 
         // Sembunyikan Y-Axis Kanan
         barChartHistory.getAxisRight().setEnabled(false);
 
         barChartHistory.getDescription().setEnabled(false);
         barChartHistory.getLegend().setEnabled(false);
-        barChartHistory.setTouchEnabled(false);
+        barChartHistory.setDrawGridBackground(false);
+        barChartHistory.setExtraBottomOffset(20f);
         barChartHistory.animateY(1000);
         barChartHistory.invalidate();
     }
