@@ -39,12 +39,14 @@
                 android:padding="24dp">
 
                 <ImageView
+                    android:id="@+id/ivProfilePicture"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/ic_profile_placeholder"
                     android:scaleType="centerCrop"/>
 
                 <TextView
+                    android:id="@+id/tvProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BUDI SANTOSO"
@@ -54,6 +56,7 @@
                     android:layout_marginTop="16dp"/>
 
                 <TextView
+                    android:id="@+id/tvProfileEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="budi.santoso@email.com"
@@ -157,43 +160,6 @@
 
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F5F5F5" android:layout_marginHorizontal="16dp"/>
 
-                <!-- Notifications -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp">
-                    
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_notifications"
-                        app:tint="@color/white"/>
-                    
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="NOTIFIKASI"
-                        android:textColor="#191970"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="16dp"/>
-                    
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchNotifications"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        app:thumbTint="#FFFFFF"
-                        app:trackTint="#5C6BC0"/>
-                </LinearLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F5F5F5" android:layout_marginHorizontal="16dp"/>
-
                 <!-- Mode Otomatis -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -227,44 +193,6 @@
                         android:checked="true"
                         app:thumbTint="#FFFFFF"
                         app:trackTint="#5C6BC0"/>
-                </LinearLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F5F5F5" android:layout_marginHorizontal="16dp"/>
-
-                <!-- Change Password -->
-                <LinearLayout
-                    android:id="@+id/btnChangePassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_circle_soft"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_lock_outline"
-                        app:tint="@color/white"/>
-                    
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="UBAH KATA SANDI"
-                        android:textColor="#191970"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="16dp"/>
-                    
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="#7986CB"/>
                 </LinearLayout>
 
             </LinearLayout>

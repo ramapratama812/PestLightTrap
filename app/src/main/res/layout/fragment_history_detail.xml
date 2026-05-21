@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="Kondisi Lingkungan Trap"
+                    android:text="KONDISI PERANGKAP"
                     android:textColor="#E8EAF6"
                     android:textSize="12sp"
                     android:layout_gravity="bottom|start"/>
@@ -134,7 +134,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="IKHTISAR SIKLUS"
+                    android:text="RINGKASAN SIKLUS"
                     android:textColor="#7986CB"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -422,9 +422,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kondisi perangkap aman dan berjalan optimal selama siklus berlangsung."
+                    android:text="KONDISI PERANGKAP AMAN DAN BERJALAN OPTIMAL SELAMA SIKLUS BERLANGSUNG."
                     android:textColor="#4CAF50"
-                    android:textSize="13sp"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_marginStart="16dp"/>
             </LinearLayout>

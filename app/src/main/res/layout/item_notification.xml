@@ -61,7 +61,8 @@
                         android:text="Low Battery"
                         android:textColor="#191970"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textAllCaps="true"/>
                     
                     <TextView
                         android:id="@+id/tvNotificationTime"
@@ -70,7 +71,8 @@
                         android:text="5 mins ago"
                         android:textColor="#7986CB"
                         android:textSize="12sp"
-                        android:layout_alignParentEnd="true"/>
+                        android:layout_alignParentEnd="true"
+                        android:textAllCaps="true"/>
                 </RelativeLayout>
 
                 <TextView
@@ -81,7 +83,8 @@
                     android:textColor="#5C6BC0"
                     android:textSize="13sp"
                     android:layout_marginTop="4dp"
-                    android:layout_marginEnd="80dp"/>
+                    android:layout_marginEnd="80dp"
+                    android:textAllCaps="true"/>
 
                 <TextView
                     android:id="@+id/tvNotificationBadge"

@@ -37,20 +37,23 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         int color;
         switch (item.getType()) {
             case "CRITICAL":
-                color = Color.parseColor("#F44336");
+                color = Color.parseColor("#F44336"); // Merah
                 break;
             case "WARNING":
-                color = Color.parseColor("#FF9800");
+                color = Color.parseColor("#FF9800"); // Kuning
+                break;
+            case "SUCCESS":
+                color = Color.parseColor("#4CAF50"); // Hijau
                 break;
             case "INFO":
             default:
-                color = Color.parseColor("#5C6BC0");
+                color = Color.parseColor("#5C6BC0"); // Biru
                 break;
         }
 
         holder.colorIndicator.setBackgroundColor(color);
-        holder.iconBg.getBackground().setTint(color);
-        holder.tvBadge.getBackground().setTint(color);
+        holder.iconBg.getBackground().mutate().setTint(color);
+        holder.tvBadge.getBackground().mutate().setTint(color);
     }
 
     @Override

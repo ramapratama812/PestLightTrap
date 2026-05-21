@@ -92,7 +92,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
+                        android:layout_alignParentTop="true"
                         android:background="@drawable/bg_circle_soft"
                         android:backgroundTint="#191970"
                         android:padding="8dp">
@@ -111,9 +111,10 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
                         android:layout_toStartOf="@id/layoutDayNight"
                         android:layout_marginEnd="16dp"
-                        android:layout_centerVertical="true">
+                        android:layout_marginTop="6dp">
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
@@ -132,10 +133,13 @@
                 </RelativeLayout>
 
                 <!-- Time -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
                     <TextView
                         android:id="@+id/tvTime"
                         android:layout_width="wrap_content"
@@ -144,7 +148,6 @@
                         android:textColor="#191970"
                         android:textSize="48sp"
                         android:textStyle="bold"
-                        android:layout_centerHorizontal="true"
                         android:includeFontPadding="false"/>
                     <TextView
                         android:id="@+id/tvAmPm"
@@ -154,11 +157,9 @@
                         android:textColor="#7986CB"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:layout_toEndOf="@id/tvTime"
-                        android:layout_alignBaseline="@id/tvTime"
                         android:layout_marginStart="8dp"
                         android:includeFontPadding="false"/>
-                </RelativeLayout>
+                </LinearLayout>
                 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -382,7 +383,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="44dp"
                             android:orientation="horizontal"
-                            android:gravity="bottom"
+                            android:gravity="center_vertical"
                             android:layout_marginTop="16dp">
                             <TextView
                                 android:id="@+id/tvPowerValue"
@@ -400,7 +401,6 @@
                                 android:textColor="#7986CB"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
-                                android:layout_marginBottom="2dp"
                                 android:includeFontPadding="false"/>
                         </LinearLayout>
  
