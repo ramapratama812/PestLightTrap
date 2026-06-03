@@ -43,6 +43,7 @@
                 android:layout_marginStart="16dp"/>
 
             <LinearLayout
+                android:id="@+id/btnCalendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -53,13 +54,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
-                android:elevation="1dp">
+                android:elevation="1dp"
+                android:clickable="true"
+                android:focusable="true">
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:src="@drawable/ic_calendar"
                     app:tint="#5C6BC0"/>
                 <TextView
+                    android:id="@+id/tvCalendarDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mon, 15 Jul"
@@ -189,10 +193,12 @@
                         android:gravity="center_vertical"
                         android:layout_marginTop="4dp">
                         <View
+                            android:id="@+id/dotNight"
                             android:layout_width="8dp"
                             android:layout_height="8dp"
                             android:background="@drawable/dot_green" />
                         <TextView
+                            android:id="@+id/tvNightStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PERANGKAP AKTIF"
@@ -203,6 +209,7 @@
                     </LinearLayout>
                     <!-- Green border indicator at bottom -->
                     <View
+                        android:id="@+id/borderNight"
                         android:layout_width="match_parent"
                         android:layout_height="4dp"
                         android:background="#5C6BC0"
@@ -249,11 +256,13 @@
                         android:gravity="center_vertical"
                         android:layout_marginTop="4dp">
                         <View
+                            android:id="@+id/dotDay"
                             android:layout_width="8dp"
                             android:layout_height="8dp"
                             android:background="@drawable/bg_circle_soft"
                             android:backgroundTint="#9FA8DA"/>
                         <TextView
+                            android:id="@+id/tvDayStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PERANGKAP TIDAK AKTIF"
@@ -263,10 +272,12 @@
                             android:layout_marginStart="6dp"/>
                     </LinearLayout>
                     <View
+                        android:id="@+id/borderDay"
                         android:layout_width="match_parent"
                         android:layout_height="4dp"
                         android:background="@android:color/transparent"
-                        android:layout_marginTop="16dp"/>
+                        android:layout_marginTop="16dp"
+                        android:layout_marginHorizontal="-20dp"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -696,14 +707,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:weightSum="2">
                         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TEGANGAN" android:textColor="#7986CB" android:textSize="10sp"/>
                             <TextView android:id="@+id/tv_voltage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12.6V" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
-                        </LinearLayout>
-                        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SUHU" android:textColor="#7986CB" android:textSize="10sp"/>
-                            <TextView android:id="@+id/tv_temp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="28°C" android:textColor="#191970" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
                         </LinearLayout>
                         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="KESEHATAN" android:textColor="#7986CB" android:textSize="10sp"/>

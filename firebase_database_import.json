@@ -1,0 +1,24 @@
+{
+  "smart_pest_trap": {
+    "status": true
+  },
+  "operation_mode": {
+    "days": "0,1,2,3,4,5,6,",
+    "start_time": "18:00",
+    "end_time": "06:00"
+  },
+  "auto_mode": true,
+  "trap_fullness": 50,
+  "power_consumption": 80,
+  "battery": {
+    "percent": 100,
+    "voltage": "12.6V",
+    "health": "BAIK"
+  },
+  "trap_analysis": {
+    "durasi_siklus": "SIKLUS MALAM",
+    "mulai": "18:00",
+    "selesai": "06:00",
+    "durasi": "12 JAM"
+  }
+}

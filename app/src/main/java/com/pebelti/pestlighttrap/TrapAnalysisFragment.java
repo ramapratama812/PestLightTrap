@@ -9,6 +9,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.app.DatePickerDialog;
+import java.util.Calendar;
+import java.util.Locale;
+import java.text.SimpleDateFormat;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,8 +37,21 @@ public class TrapAnalysisFragment extends Fragment {
     private ProgressBar pbBattery;
     private TextView tvBatteryPercent;
     private TextView tvVoltage;
-    private TextView tvTemp;
     private TextView tvHealth;
+
+    // Day/Night State Views
+    private View dotNight;
+    private TextView tvNightStatus;
+    private View borderNight;
+    
+    private View dotDay;
+    private TextView tvDayStatus;
+    private View borderDay;
+
+    // Calendar Views & Variables
+    private LinearLayout btnCalendar;
+    private TextView tvCalendarDate;
+    private Calendar selectedCalendar = Calendar.getInstance();
 
     // Firebase References
     private DatabaseReference trapRef;
@@ -54,7 +72,6 @@ public class TrapAnalysisFragment extends Fragment {
         pbBattery = view.findViewById(R.id.pb_battery);
         tvBatteryPercent = view.findViewById(R.id.tv_battery_percent);
         tvVoltage = view.findViewById(R.id.tv_voltage);
-        tvTemp = view.findViewById(R.id.tv_temp);
         tvHealth = view.findViewById(R.id.tv_health);
 
         // 3. Inisialisasi Firebase Database
@@ -65,6 +82,21 @@ public class TrapAnalysisFragment extends Fragment {
         // 4. Load Data dari Firebase
         loadTrapData();
         loadBatteryData();
+
+        // 5. Setup Kalender
+        btnCalendar = view.findViewById(R.id.btnCalendar);
+        tvCalendarDate = view.findViewById(R.id.tvCalendarDate);
+        updateCalendarText();
+        btnCalendar.setOnClickListener(v -> showDatePicker());
+
+        // 6. Setup Status Siang/Malam
+        dotNight = view.findViewById(R.id.dotNight);
+        tvNightStatus = view.findViewById(R.id.tvNightStatus);
+        borderNight = view.findViewById(R.id.borderNight);
+        dotDay = view.findViewById(R.id.dotDay);
+        tvDayStatus = view.findViewById(R.id.tvDayStatus);
+        borderDay = view.findViewById(R.id.borderDay);
+        setupClockBasedStatus();
 
         // Tombol Kembali
         View btnBack = view.findViewById(R.id.btnBack);
@@ -113,7 +145,6 @@ public class TrapAnalysisFragment extends Fragment {
                 if (snapshot.exists()) {
                     Integer percent = snapshot.child("percent").getValue(Integer.class);
                     String voltage = snapshot.child("voltage").getValue(String.class);
-                    String temp = snapshot.child("temp").getValue(String.class);
                     String health = snapshot.child("health").getValue(String.class);
 
                     if (percent != null) {
@@ -121,7 +152,6 @@ public class TrapAnalysisFragment extends Fragment {
                         if (tvBatteryPercent != null) tvBatteryPercent.setText(percent + "%");
                     }
                     if (voltage != null && tvVoltage != null) tvVoltage.setText(voltage);
-                    if (temp != null && tvTemp != null) tvTemp.setText(temp);
                     if (health != null && tvHealth != null) tvHealth.setText(health);
                 }
             }
@@ -133,6 +163,98 @@ public class TrapAnalysisFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void showDatePicker() {
+        if (getContext() == null) return;
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getContext(),
+                (view, year, month, dayOfMonth) -> {
+                    selectedCalendar.set(Calendar.YEAR, year);
+                    selectedCalendar.set(Calendar.MONTH, month);
+                    selectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    updateCalendarText();
+
+                    // TODO: Tambahkan query Firebase berdasarkan tanggal (jika struktur database mendukung history harian)
+                    // Contoh: trapRef.orderByChild("tanggal").equalTo("2026-07-15").addListenerForSingleValueEvent(...)
+
+                    Toast.makeText(getContext(), "Menampilkan data untuk: " + tvCalendarDate.getText().toString(), Toast.LENGTH_SHORT).show();
+                },
+                selectedCalendar.get(Calendar.YEAR),
+                selectedCalendar.get(Calendar.MONTH),
+                selectedCalendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    private void updateCalendarText() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM", new Locale("id", "ID"));
+        String dateStr = sdf.format(selectedCalendar.getTime());
+        if (tvCalendarDate != null) {
+            tvCalendarDate.setText(dateStr);
+        }
+    }
+
+    private void setupClockBasedStatus() {
+        android.os.Handler handler = new android.os.Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+                if (hour >= 6 && hour < 18) {
+                    // Siang (Day) -> Night Card Inactive
+                    if (dotNight != null) {
+                        dotNight.setBackgroundResource(R.drawable.bg_circle_soft);
+                        dotNight.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#9FA8DA")));
+                    }
+                    if (tvNightStatus != null) {
+                        tvNightStatus.setText("PERANGKAP TIDAK AKTIF");
+                        tvNightStatus.setTextColor(Color.parseColor("#7986CB"));
+                    }
+                    if (borderNight != null) borderNight.setBackgroundColor(Color.TRANSPARENT);
+
+                    // Day Card Active (Tapi status perangkap mati di siang hari)
+                    if (dotDay != null) {
+                        dotDay.setBackgroundResource(R.drawable.dot_green);
+                        dotDay.setBackgroundTintList(null);
+                    }
+                    if (tvDayStatus != null) {
+                        tvDayStatus.setText("PERANGKAP TIDAK AKTIF");
+                        tvDayStatus.setTextColor(Color.parseColor("#5C6BC0"));
+                    }
+                    if (borderDay != null) borderDay.setBackgroundColor(Color.parseColor("#5C6BC0"));
+
+                } else {
+                    // Malam (Night) -> Night Card Active
+                    if (dotNight != null) {
+                        dotNight.setBackgroundResource(R.drawable.dot_green);
+                        dotNight.setBackgroundTintList(null);
+                    }
+                    if (tvNightStatus != null) {
+                        tvNightStatus.setText("PERANGKAP AKTIF");
+                        tvNightStatus.setTextColor(Color.parseColor("#5C6BC0"));
+                    }
+                    if (borderNight != null) borderNight.setBackgroundColor(Color.parseColor("#5C6BC0"));
+
+                    // Day Card Inactive
+                    if (dotDay != null) {
+                        dotDay.setBackgroundResource(R.drawable.bg_circle_soft);
+                        dotDay.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#9FA8DA")));
+                    }
+                    if (tvDayStatus != null) {
+                        tvDayStatus.setText("PERANGKAP TIDAK AKTIF");
+                        tvDayStatus.setTextColor(Color.parseColor("#7986CB"));
+                    }
+                    if (borderDay != null) borderDay.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+                handler.postDelayed(this, 10000); // Cek setiap 10 detik
+            }
+        };
+        handler.post(runnable);
     }
 
     private void setupTabSwitching(View view) {

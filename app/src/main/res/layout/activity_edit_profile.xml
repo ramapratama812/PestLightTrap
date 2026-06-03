@@ -60,7 +60,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Verifikasi Keamanan"
+                        android:text="VERFIKASI KEAMANAN"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -69,7 +69,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Untuk mengubah email atau sandi, Anda harus memasukkan sandi saat ini."
+                        android:text="UNTUK MENGUBAH EMAIL ATAU SANDI, ANDA HARUS MEMASUKKAN SANDI SAAT INI"
                         android:textColor="#7986CB"
                         android:textSize="12sp"
                         android:layout_marginBottom="16dp"/>
@@ -78,28 +78,44 @@
                         android:id="@+id/etCurrentPassword"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:hint="Kata Sandi Saat Ini"
+                        android:hint="KATA SANDI SAAT INI"
+                        android:textColorHint="#9FA8DA"
+                        android:textColor="#191970"
                         android:inputType="textPassword"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="16dp"
                         android:layout_marginBottom="24dp"/>
                         
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F5F5F5" android:layout_marginBottom="24dp"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#f5f5f5ff" android:layout_marginBottom="24dp"/>
                     
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Data Profil Baru"
+                        android:text="DATA PROFIL BARU"
                         android:textColor="#191970"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="16dp"/>
                         
                     <EditText
+                        android:id="@+id/etNewName"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="NAMA BARU"
+                        android:textColorHint="#9FA8DA"
+                        android:textColor="#191970"
+                        android:inputType="textPersonName"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginBottom="16dp"/>
+                        
+                    <EditText
                         android:id="@+id/etNewEmail"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:hint="Email Baru (Opsional)"
+                        android:hint="EMAIL BARU"
+                        android:textColorHint="#9FA8DA"
+                        android:textColor="#191970"
                         android:inputType="textEmailAddress"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="16dp"
@@ -109,7 +125,9 @@
                         android:id="@+id/etNewPassword"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:hint="Kata Sandi Baru (Opsional)"
+                        android:hint="KATA SANDI BARU (Opsional)"
+                        android:textColorHint="#9FA8DA"
+                        android:textColor="#191970"
                         android:inputType="textPassword"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="16dp"/>
@@ -117,7 +135,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
             
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSaveProfile"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -125,8 +143,8 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:backgroundTint="#5C6BC0"
-                app:cornerRadius="16dp"/>
+                android:background="@drawable/bg_button_navy"
+                android:backgroundTint="#5C6BC0"/>
                 
         </LinearLayout>
     </ScrollView>

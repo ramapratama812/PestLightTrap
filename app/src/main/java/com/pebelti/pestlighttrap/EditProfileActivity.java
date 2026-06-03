@@ -11,10 +11,11 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText etCurrentPassword, etNewEmail, etNewPassword;
+    private EditText etCurrentPassword, etNewName, etNewEmail, etNewPassword;
     private Button btnSaveProfile;
     private ImageView btnBack;
     private FirebaseAuth mAuth;
@@ -28,6 +29,7 @@ public class EditProfileActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         etCurrentPassword = findViewById(R.id.etCurrentPassword);
+        etNewName = findViewById(R.id.etNewName);
         etNewEmail = findViewById(R.id.etNewEmail);
         etNewPassword = findViewById(R.id.etNewPassword);
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
@@ -35,12 +37,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
         
-        if (user != null) {
-            etNewEmail.setText(user.getEmail());
-        }
+        // Sengaja tidak mengisi otomatis data saat ini agar "hint" terlihat lebih jelas
 
         btnSaveProfile.setOnClickListener(v -> {
             String currentPassword = etCurrentPassword.getText().toString().trim();
+            String newName = etNewName.getText().toString().trim();
             String newEmail = etNewEmail.getText().toString().trim();
             String newPassword = etNewPassword.getText().toString().trim();
 
@@ -53,7 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), currentPassword);
                 user.reauthenticate(credential).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        updateProfile(user, newEmail, newPassword);
+                        updateProfile(user, newName, newEmail, newPassword);
                     } else {
                         Toast.makeText(EditProfileActivity.this, "Sandi saat ini salah. Gagal memverifikasi.", Toast.LENGTH_SHORT).show();
                     }
@@ -62,9 +63,21 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void updateProfile(FirebaseUser user, String newEmail, String newPassword) {
+    private void updateProfile(FirebaseUser user, String newName, String newEmail, String newPassword) {
+        boolean nameChanged = !TextUtils.isEmpty(newName) && !newName.equals(user.getDisplayName());
         boolean emailChanged = !newEmail.equals(user.getEmail()) && !TextUtils.isEmpty(newEmail);
         boolean passwordChanged = !TextUtils.isEmpty(newPassword);
+
+        if (nameChanged) {
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(newName)
+                    .build();
+            user.updateProfile(profileUpdates).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(EditProfileActivity.this, "Nama berhasil diperbarui", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         if (emailChanged) {
             user.updateEmail(newEmail).addOnCompleteListener(task -> {
@@ -86,7 +99,7 @@ public class EditProfileActivity extends AppCompatActivity {
             });
         }
         
-        if (!emailChanged && !passwordChanged) {
+        if (!nameChanged && !emailChanged && !passwordChanged) {
             Toast.makeText(EditProfileActivity.this, "Tidak ada data yang diubah", Toast.LENGTH_SHORT).show();
         } else {
             finish();

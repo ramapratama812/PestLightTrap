@@ -110,16 +110,15 @@ public class HomeDashboardFragment extends Fragment {
                     .commit();
         });
 
-        // Set yesterday's date dynamically for the history card
+        // Set today's date dynamically for the history card
         TextView tvHistoryItemDate = view.findViewById(R.id.tvHistoryItemDate);
         TextView tvHistoryBadge = view.findViewById(R.id.tvHistoryBadge);
         Calendar historyCalendar = Calendar.getInstance();
-        historyCalendar.add(Calendar.DAY_OF_YEAR, -1);
 
         if (tvHistoryItemDate != null) {
             java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEEE, d MMM", new java.util.Locale("id", "ID"));
-            String yesterdayStr = "• " + dateFormat.format(historyCalendar.getTime()).toUpperCase();
-            tvHistoryItemDate.setText(yesterdayStr);
+            String todayStr = "• " + dateFormat.format(historyCalendar.getTime()).toUpperCase();
+            tvHistoryItemDate.setText(todayStr);
         }
         if (tvHistoryBadge != null) {
             java.text.SimpleDateFormat badgeFormat = new java.text.SimpleDateFormat("d MMM", new java.util.Locale("id", "ID"));
@@ -206,6 +205,9 @@ public class HomeDashboardFragment extends Fragment {
                     layoutDayNight.getBackground().mutate().setTint(Color.parseColor("#191970"));
                 }
 
+                // Terapkan logika mode otomatis
+                checkAndApplyAutoMode(hour, minute, calendar.get(Calendar.DAY_OF_WEEK));
+
                 handler.postDelayed(this, 10000);
             }
         };
@@ -227,6 +229,54 @@ public class HomeDashboardFragment extends Fragment {
             tvToggleBadge.setText("MATI");
             tvToggleBadge.setBackgroundResource(R.drawable.bg_badge_red);
             tvToggleBadge.setTextColor(Color.parseColor("#F44336"));
+        }
+    }
+
+    private void checkAndApplyAutoMode(int currentHour, int currentMinute, int currentDayOfWeek) {
+        if (!isAutoMode || days == null) return;
+        
+        // Konversi currentDayOfWeek (Calendar.SUNDAY=1, MONDAY=2, dst) ke index 0-6 (Senin=0, Minggu=6)
+        int dayIndex = currentDayOfWeek - 2;
+        if (dayIndex < 0) dayIndex = 6; 
+        
+        boolean isDayActive = false;
+        if (days[dayIndex] != null && days[dayIndex].getTag() != null) {
+            isDayActive = (boolean) days[dayIndex].getTag();
+        }
+
+        if (!isDayActive) {
+            // Jika hari ini tidak aktif dalam jadwal, pastikan perangkat mati
+            if (isDeviceOn) deviceRef.setValue(false);
+            return;
+        }
+
+        // Parse startTime dan endTime
+        int startH = 18, startM = 0, endH = 6, endM = 0;
+        try {
+            String[] s = startTime.split(":");
+            startH = Integer.parseInt(s[0]);
+            startM = Integer.parseInt(s[1]);
+            
+            String[] e = endTime.split(":");
+            endH = Integer.parseInt(e[0]);
+            endM = Integer.parseInt(e[1]);
+        } catch (Exception ignored) {}
+
+        int currentMins = currentHour * 60 + currentMinute;
+        int startMins = startH * 60 + startM;
+        int endMins = endH * 60 + endM;
+
+        boolean shouldBeOn = false;
+        if (startMins <= endMins) {
+            // Contoh jadwal: 08:00 ke 17:00
+            shouldBeOn = currentMins >= startMins && currentMins < endMins;
+        } else {
+            // Contoh jadwal melewati tengah malam: 18:00 ke 06:00
+            shouldBeOn = currentMins >= startMins || currentMins < endMins;
+        }
+
+        if (isDeviceOn != shouldBeOn) {
+            deviceRef.setValue(shouldBeOn);
         }
     }
 
