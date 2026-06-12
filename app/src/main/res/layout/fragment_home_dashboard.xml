@@ -221,10 +221,20 @@
                         android:layout_height="match_parent">
                         
                         <ImageView
+                            android:id="@+id/ivEspCamCapture"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/img_trap_history"
                             android:scaleType="centerCrop"/>
+                        
+                        <!-- Loading indicator while fetching ESP32-CAM image -->
+                        <ProgressBar
+                            android:id="@+id/pbCamLoading"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:indeterminateTint="#5C6BC0"/>
                         
                         <!-- Semi-transparent overlay to ensure text contrast -->
                         <View
@@ -242,6 +252,20 @@
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
                             android:textStyle="bold"/>
+                        
+                        <!-- Refresh button -->
+                        <ImageView
+                            android:id="@+id/btnRefreshCam"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="12dp"
+                            android:src="@drawable/ic_refresh"
+                            android:background="@drawable/bg_circle_soft"
+                            android:padding="8dp"
+                            app:tint="#FFFFFF"
+                            android:clickable="true"
+                            android:focusable="true"/>
                     </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>
 

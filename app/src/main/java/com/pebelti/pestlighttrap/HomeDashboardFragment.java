@@ -1,12 +1,18 @@
 package com.pebelti.pestlighttrap;
 
 import android.app.TimePickerDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -20,10 +26,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class HomeDashboardFragment extends Fragment {
+
+    // ESP32-CAM Configuration
+    private static final String ESP_CAM_CAPTURE_URL = "http://10.156.99.169/capture";
+    private static final int CAM_REFRESH_INTERVAL_MS = 5000; // Refresh setiap 5 detik
 
     private FrameLayout btnToggleDevice;
     private TextView tvStatus;
@@ -42,13 +57,22 @@ public class HomeDashboardFragment extends Fragment {
     private DatabaseReference trapRef;
     private DatabaseReference powerRef;
     private DatabaseReference autoModeRef;
-    
+
     private TextView[] days;
     private TextView tvOperationTime;
 
+    // ESP32-CAM views
+    private ImageView ivEspCamCapture;
+    private ProgressBar pbCamLoading;
+    private ImageView btnRefreshCam;
+    private Handler camHandler;
+    private Runnable camRunnable;
+    private ExecutorService camExecutor;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_dashboard, container, false);
 
         btnToggleDevice = view.findViewById(R.id.btnToggleDevice);
@@ -60,11 +84,11 @@ public class HomeDashboardFragment extends Fragment {
         // Inisialisasi Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         deviceRef = database.getReference("smart_pest_trap/status");
-        operationRef = database.getReference("operation_mode");
-        batteryRef = database.getReference("battery");
-        trapRef = database.getReference("trap_fullness");
-        powerRef = database.getReference("power_consumption");
-        autoModeRef = database.getReference("auto_mode");
+        operationRef = database.getReference("smart_pest_trap/operation_mode");
+        batteryRef = database.getReference("smart_pest_trap/battery");
+        trapRef = database.getReference("smart_pest_trap/trap_fullness");
+        powerRef = database.getReference("smart_pest_trap/power_consumption");
+        autoModeRef = database.getReference("smart_pest_trap/auto_mode"); // nyesuain referensi realtime database
 
         // Baca status dari Firebase
         deviceRef.addValueEventListener(new ValueEventListener() {
@@ -100,7 +124,8 @@ public class HomeDashboardFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
 
         btnNotifications.setOnClickListener(v -> {
@@ -116,12 +141,14 @@ public class HomeDashboardFragment extends Fragment {
         Calendar historyCalendar = Calendar.getInstance();
 
         if (tvHistoryItemDate != null) {
-            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEEE, d MMM", new java.util.Locale("id", "ID"));
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEEE, d MMM",
+                    new java.util.Locale("id", "ID"));
             String todayStr = "• " + dateFormat.format(historyCalendar.getTime()).toUpperCase();
             tvHistoryItemDate.setText(todayStr);
         }
         if (tvHistoryBadge != null) {
-            java.text.SimpleDateFormat badgeFormat = new java.text.SimpleDateFormat("d MMM", new java.util.Locale("id", "ID"));
+            java.text.SimpleDateFormat badgeFormat = new java.text.SimpleDateFormat("d MMM",
+                    new java.util.Locale("id", "ID"));
             String badgeStr = badgeFormat.format(historyCalendar.getTime()).toUpperCase();
             tvHistoryBadge.setText(badgeStr);
         }
@@ -147,13 +174,13 @@ public class HomeDashboardFragment extends Fragment {
             });
         }
 
-
-
         // Klik tombol toggle -> Update ke Firebase
         btnToggleDevice.setOnClickListener(v -> {
             if (isAutoMode) {
                 if (getContext() != null) {
-                    Toast.makeText(getContext(), "MODE OTOMATIS AKTIF! SILAKAN NONAKTIFKAN DI PENGATURAN UNTUK KONTROL MANUAL.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),
+                            "MODE OTOMATIS AKTIF! SILAKAN NONAKTIFKAN DI PENGATURAN UNTUK KONTROL MANUAL.",
+                            Toast.LENGTH_LONG).show();
                 }
             } else {
                 deviceRef.setValue(!isDeviceOn);
@@ -166,6 +193,7 @@ public class HomeDashboardFragment extends Fragment {
         loadTrapCondition(view);
         loadPowerDraw(view);
         loadOperationMode();
+        setupEspCam(view);
 
         return view;
     }
@@ -182,8 +210,9 @@ public class HomeDashboardFragment extends Fragment {
             @Override
             public void run() {
                 Calendar calendar = Calendar.getInstance();
-                
-                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEEE, dd MMMM yyyy", new java.util.Locale("id", "ID"));
+
+                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEEE, dd MMMM yyyy",
+                        new java.util.Locale("id", "ID"));
                 String dateStr = dateFormat.format(calendar.getTime()).toUpperCase();
                 tvDate.setText(dateStr);
 
@@ -233,12 +262,15 @@ public class HomeDashboardFragment extends Fragment {
     }
 
     private void checkAndApplyAutoMode(int currentHour, int currentMinute, int currentDayOfWeek) {
-        if (!isAutoMode || days == null) return;
-        
-        // Konversi currentDayOfWeek (Calendar.SUNDAY=1, MONDAY=2, dst) ke index 0-6 (Senin=0, Minggu=6)
+        if (!isAutoMode || days == null)
+            return;
+
+        // Konversi currentDayOfWeek (Calendar.SUNDAY=1, MONDAY=2, dst) ke index 0-6
+        // (Senin=0, Minggu=6)
         int dayIndex = currentDayOfWeek - 2;
-        if (dayIndex < 0) dayIndex = 6; 
-        
+        if (dayIndex < 0)
+            dayIndex = 6;
+
         boolean isDayActive = false;
         if (days[dayIndex] != null && days[dayIndex].getTag() != null) {
             isDayActive = (boolean) days[dayIndex].getTag();
@@ -246,7 +278,8 @@ public class HomeDashboardFragment extends Fragment {
 
         if (!isDayActive) {
             // Jika hari ini tidak aktif dalam jadwal, pastikan perangkat mati
-            if (isDeviceOn) deviceRef.setValue(false);
+            if (isDeviceOn)
+                deviceRef.setValue(false);
             return;
         }
 
@@ -256,11 +289,12 @@ public class HomeDashboardFragment extends Fragment {
             String[] s = startTime.split(":");
             startH = Integer.parseInt(s[0]);
             startM = Integer.parseInt(s[1]);
-            
+
             String[] e = endTime.split(":");
             endH = Integer.parseInt(e[0]);
             endM = Integer.parseInt(e[1]);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         int currentMins = currentHour * 60 + currentMinute;
         int startMins = startH * 60 + startM;
@@ -283,22 +317,22 @@ public class HomeDashboardFragment extends Fragment {
     private void setupModeOperasi(View view) {
         tvOperationTime = view.findViewById(R.id.tvOperationTime);
         TextView btnEditOperation = view.findViewById(R.id.btnEditOperation);
-        
-        days = new TextView[]{
-            view.findViewById(R.id.daySenin),
-            view.findViewById(R.id.daySelasa),
-            view.findViewById(R.id.dayRabu),
-            view.findViewById(R.id.dayKamis),
-            view.findViewById(R.id.dayJumat),
-            view.findViewById(R.id.daySabtu),
-            view.findViewById(R.id.dayMinggu)
+
+        days = new TextView[] {
+                view.findViewById(R.id.daySenin),
+                view.findViewById(R.id.daySelasa),
+                view.findViewById(R.id.dayRabu),
+                view.findViewById(R.id.dayKamis),
+                view.findViewById(R.id.dayJumat),
+                view.findViewById(R.id.daySabtu),
+                view.findViewById(R.id.dayMinggu)
         };
 
         // Initialize tags and listeners for the days
         for (int i = 0; i < days.length; i++) {
             final TextView day = days[i];
             day.setTag(i < 5); // Default Mon-Fri active
-            
+
             day.setOnClickListener(v -> {
                 boolean isActive = (boolean) day.getTag();
                 if (isActive) {
@@ -318,7 +352,8 @@ public class HomeDashboardFragment extends Fragment {
     }
 
     private void saveOperationMode() {
-        if (operationRef == null) return;
+        if (operationRef == null)
+            return;
         StringBuilder daysStr = new StringBuilder();
         for (int i = 0; i < days.length; i++) {
             if ((boolean) days[i].getTag()) {
@@ -331,7 +366,8 @@ public class HomeDashboardFragment extends Fragment {
     }
 
     private void loadOperationMode() {
-        if (operationRef == null) return;
+        if (operationRef == null)
+            return;
         operationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -360,7 +396,8 @@ public class HomeDashboardFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
     }
 
@@ -368,7 +405,7 @@ public class HomeDashboardFragment extends Fragment {
         // Pick Start Time
         TimePickerDialog startTimePicker = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
             startTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-            
+
             // Pick End Time after Start Time is selected
             TimePickerDialog endTimePicker = new TimePickerDialog(getContext(), (view1, hourOfDay1, minute1) -> {
                 endTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay1, minute1);
@@ -377,7 +414,7 @@ public class HomeDashboardFragment extends Fragment {
             }, 6, 0, true);
             endTimePicker.setTitle("Pilih Jam Selesai");
             endTimePicker.show();
-            
+
         }, 18, 0, true);
         startTimePicker.setTitle("Pilih Jam Mulai");
         startTimePicker.show();
@@ -387,7 +424,8 @@ public class HomeDashboardFragment extends Fragment {
         TextView tvSolarStatus = view.findViewById(R.id.tvSolarStatus);
         TextView tvSolarPercent = view.findViewById(R.id.tvSolarPercent);
 
-        if (batteryRef == null) return;
+        if (batteryRef == null)
+            return;
         batteryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -395,7 +433,7 @@ public class HomeDashboardFragment extends Fragment {
                     Integer percent = snapshot.child("percent").getValue(Integer.class);
                     if (percent != null) {
                         tvSolarPercent.setText(percent + "%");
-                        
+
                         if (percent >= 80) {
                             tvSolarStatus.setText("DAYA PENUH");
                             tvSolarStatus.setTextColor(Color.parseColor("#4CAF50")); // Green
@@ -409,8 +447,10 @@ public class HomeDashboardFragment extends Fragment {
                     }
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
     }
 
@@ -418,7 +458,8 @@ public class HomeDashboardFragment extends Fragment {
         TextView tvTrapPercent = view.findViewById(R.id.tvTrapPercent);
         TextView tvTrapStatus = view.findViewById(R.id.tvTrapStatus);
 
-        if (trapRef == null) return;
+        if (trapRef == null)
+            return;
         trapRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -426,7 +467,7 @@ public class HomeDashboardFragment extends Fragment {
                     Integer percent = snapshot.getValue(Integer.class);
                     if (percent != null) {
                         tvTrapPercent.setText(percent + "%");
-                        
+
                         if (percent >= 80) {
                             tvTrapStatus.setText("PENUH");
                             tvTrapStatus.setTextColor(Color.parseColor("#F44336")); // Red
@@ -440,8 +481,10 @@ public class HomeDashboardFragment extends Fragment {
                     }
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
     }
 
@@ -449,7 +492,8 @@ public class HomeDashboardFragment extends Fragment {
         TextView tvPowerValue = view.findViewById(R.id.tvPowerValue);
         TextView tvPowerStatus = view.findViewById(R.id.tvPowerStatus);
 
-        if (powerRef == null) return;
+        if (powerRef == null)
+            return;
         powerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -457,7 +501,7 @@ public class HomeDashboardFragment extends Fragment {
                     Integer value = snapshot.getValue(Integer.class);
                     if (value != null) {
                         tvPowerValue.setText(String.valueOf(value));
-                        
+
                         if (value >= 60) {
                             tvPowerStatus.setText("KONSUMSI DAYA NORMAL");
                             tvPowerStatus.setTextColor(Color.parseColor("#4CAF50")); // Green
@@ -468,8 +512,99 @@ public class HomeDashboardFragment extends Fragment {
                     }
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
+    }
+
+    // ─── ESP32-CAM LIVE CAPTURE ───────────────────────────────────────────
+
+    private void setupEspCam(View view) {
+        ivEspCamCapture = view.findViewById(R.id.ivEspCamCapture);
+        pbCamLoading = view.findViewById(R.id.pbCamLoading);
+        btnRefreshCam = view.findViewById(R.id.btnRefreshCam);
+        camExecutor = Executors.newSingleThreadExecutor();
+        camHandler = new Handler(Looper.getMainLooper());
+
+        // Tombol refresh manual
+        if (btnRefreshCam != null) {
+            btnRefreshCam.setOnClickListener(v -> loadEspCamImage());
+        }
+
+        // Mulai auto-refresh
+        camRunnable = new Runnable() {
+            @Override
+            public void run() {
+                loadEspCamImage();
+                camHandler.postDelayed(this, CAM_REFRESH_INTERVAL_MS);
+            }
+        };
+        camHandler.post(camRunnable);
+    }
+
+    private void loadEspCamImage() {
+        if (!isAdded() || ivEspCamCapture == null) return;
+
+        // Tampilkan loading indicator
+        if (pbCamLoading != null) {
+            pbCamLoading.setVisibility(View.VISIBLE);
+        }
+
+        camExecutor.execute(() -> {
+            Bitmap bitmap = null;
+            HttpURLConnection connection = null;
+            InputStream inputStream = null;
+            try {
+                URL url = new URL(ESP_CAM_CAPTURE_URL);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setConnectTimeout(5000);
+                connection.setReadTimeout(5000);
+                connection.setRequestMethod("GET");
+                connection.setDoInput(true);
+                connection.connect();
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = connection.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(inputStream);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (inputStream != null) inputStream.close();
+                } catch (Exception ignored) {}
+                if (connection != null) connection.disconnect();
+            }
+
+            final Bitmap finalBitmap = bitmap;
+            camHandler.post(() -> {
+                if (!isAdded()) return;
+
+                // Sembunyikan loading indicator
+                if (pbCamLoading != null) {
+                    pbCamLoading.setVisibility(View.GONE);
+                }
+
+                if (finalBitmap != null && ivEspCamCapture != null) {
+                    ivEspCamCapture.setImageBitmap(finalBitmap);
+                }
+                // Jika gagal, tetap tampilkan gambar sebelumnya (atau default)
+            });
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Hentikan auto-refresh saat fragment dihancurkan
+        if (camHandler != null && camRunnable != null) {
+            camHandler.removeCallbacks(camRunnable);
+        }
+        if (camExecutor != null && !camExecutor.isShutdown()) {
+            camExecutor.shutdownNow();
+        }
     }
 }

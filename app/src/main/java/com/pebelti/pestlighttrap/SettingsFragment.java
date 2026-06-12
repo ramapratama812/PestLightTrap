@@ -47,12 +47,12 @@ public class SettingsFragment extends Fragment {
                     Uri imageUri = result.getData().getData();
                     uploadImageToDatabase(imageUri);
                 }
-            }
-    );
+            });
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         ivProfilePicture = view.findViewById(R.id.ivProfilePicture);
@@ -70,13 +70,20 @@ public class SettingsFragment extends Fragment {
 
         // Account Section
         view.findViewById(R.id.btnChangePhoto).setOnClickListener(v -> openGallery());
-        
+
         view.findViewById(R.id.btnEditProfile).setOnClickListener(v -> {
             startActivity(new Intent(getContext(), EditProfileActivity.class));
         });
-        
+
         SwitchMaterial switchAutoMode = view.findViewById(R.id.switchAutoMode);
-        DatabaseReference autoModeRef = FirebaseDatabase.getInstance().getReference("auto_mode");
+        DatabaseReference autoModeRef = FirebaseDatabase.getInstance().getReference("smart_pest_trap/auto_mode"); // ubah
+                                                                                                                  // refensinya
+                                                                                                                  // supaya
+                                                                                                                  // ngikutin
+                                                                                                                  // yg
+                                                                                                                  // di
+                                                                                                                  // realtime
+                                                                                                                  // database
 
         autoModeRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,7 +97,8 @@ public class SettingsFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
 
         switchAutoMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -101,10 +109,10 @@ public class SettingsFragment extends Fragment {
 
         // Application Section
         view.findViewById(R.id.btnAbout).setOnClickListener(v -> showAboutDialog());
-        view.findViewById(R.id.btnPrivacyPolicy).setOnClickListener(v -> 
-            Toast.makeText(getContext(), "Membuka Kebijakan Privasi...", Toast.LENGTH_SHORT).show());
-        view.findViewById(R.id.btnTermsOfUse).setOnClickListener(v -> 
-            Toast.makeText(getContext(), "Membuka Syarat Penggunaan...", Toast.LENGTH_SHORT).show());
+        view.findViewById(R.id.btnPrivacyPolicy).setOnClickListener(
+                v -> Toast.makeText(getContext(), "Membuka Kebijakan Privasi...", Toast.LENGTH_SHORT).show());
+        view.findViewById(R.id.btnTermsOfUse).setOnClickListener(
+                v -> Toast.makeText(getContext(), "Membuka Syarat Penggunaan...", Toast.LENGTH_SHORT).show());
         view.findViewById(R.id.btnHelpSupport).setOnClickListener(v -> showHelpDialog());
 
         // Logout
@@ -148,7 +156,7 @@ public class SettingsFragment extends Fragment {
         try {
             InputStream inputStream = requireContext().getContentResolver().openInputStream(imageUri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            
+
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
             float maxDim = 300.0f; // Scale down for Base64 storage
@@ -189,7 +197,8 @@ public class SettingsFragment extends Fragment {
                         if (base64Image != null && !base64Image.isEmpty()) {
                             try {
                                 byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
-                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,
+                                        decodedString.length);
                                 ivProfilePicture.setImageBitmap(decodedByte);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -199,7 +208,8 @@ public class SettingsFragment extends Fragment {
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {}
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
             });
         }
     }
@@ -207,7 +217,8 @@ public class SettingsFragment extends Fragment {
     private void showAboutDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Tentang Aplikasi")
-                .setMessage("Smart Light Trap v1.0.0\n\nAplikasi monitoring dan kontrol alat perangkap hama pintar untuk pertanian modern.\n\n© 2026 PestLightTrap Team")
+                .setMessage(
+                        "Smart Light Trap v1.0.0\n\nAplikasi monitoring dan kontrol alat perangkap hama pintar untuk pertanian modern.\n\n© 2026 PestLightTrap Team")
                 .setPositiveButton("Tutup", null)
                 .show();
     }
@@ -215,7 +226,8 @@ public class SettingsFragment extends Fragment {
     private void showHelpDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Bantuan & Dukungan")
-                .setMessage("Jika Anda mengalami kendala, silakan hubungi tim dukungan kami di:\n\nEmail: support@pestlighttrap.com\nWhatsApp: +62 812 3456 7890")
+                .setMessage(
+                        "Jika Anda mengalami kendala, silakan hubungi tim dukungan kami di:\n\nEmail: support@pestlighttrap.com\nWhatsApp: +62 812 3456 7890")
                 .setPositiveButton("Tutup", null)
                 .show();
     }
