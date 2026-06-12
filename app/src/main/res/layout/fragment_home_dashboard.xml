@@ -761,10 +761,11 @@
                         android:layout_height="80dp"
                         android:layout_marginTop="12dp">
                         <ProgressBar
+                            android:id="@+id/pbTrapCircular"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:indeterminate="false"
-                            android:progress="50"
+                            android:progress="0"
                             android:max="100"
                             android:progressDrawable="@drawable/circular_progress_bar"
                             style="?android:attr/progressBarStyleHorizontal" />
@@ -826,6 +827,7 @@
                         android:letterSpacing="0.1"/>
                         
                     <TextView
+                        android:id="@+id/tvActivityTimeRemaining"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5h 24m"
@@ -835,6 +837,7 @@
                         android:layout_marginTop="16dp"/>
                         
                     <TextView
+                        android:id="@+id/tvActivityPeriodLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MALAM INI"
@@ -842,21 +845,34 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"/>
                         
-                    <!-- Timeline or bar -->
-                    <View
+                    <!-- Timeline progress bar -->
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/bg_pill_soft"
-                        android:backgroundTint="#E8EAF6"/>
+                        android:layout_marginTop="16dp">
+                        
+                        <!-- Background track -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_pill_soft"
+                            android:backgroundTint="#E8EAF6"/>
+                        
+                        <!-- Progress fill -->
+                        <View
+                            android:id="@+id/viewActivityProgressFill"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_pill_soft"/>
+                    </FrameLayout>
                         
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#7986CB" android:textSize="10sp"/>
+                        <TextView android:id="@+id/tvActivityStartTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="18:00" android:textColor="#7986CB" android:textSize="10sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SEKARANG" android:textColor="#7986CB" android:textSize="10sp" android:layout_centerHorizontal="true"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="06:00" android:textColor="#7986CB" android:textSize="10sp" android:layout_alignParentEnd="true"/>
+                        <TextView android:id="@+id/tvActivityEndTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="06:00" android:textColor="#7986CB" android:textSize="10sp" android:layout_alignParentEnd="true"/>
                     </RelativeLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

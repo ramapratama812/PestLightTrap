@@ -69,6 +69,13 @@ public class HomeDashboardFragment extends Fragment {
     private Runnable camRunnable;
     private ExecutorService camExecutor;
 
+    // Activity tracker views
+    private TextView tvActivityTimeRemaining;
+    private TextView tvActivityPeriodLabel;
+    private View viewActivityProgressFill;
+    private TextView tvActivityStartTime;
+    private TextView tvActivityEndTime;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -194,6 +201,7 @@ public class HomeDashboardFragment extends Fragment {
         loadPowerDraw(view);
         loadOperationMode();
         setupEspCam(view);
+        setupActivityTracker(view);
 
         return view;
     }
@@ -236,6 +244,9 @@ public class HomeDashboardFragment extends Fragment {
 
                 // Terapkan logika mode otomatis
                 checkAndApplyAutoMode(hour, minute, calendar.get(Calendar.DAY_OF_WEEK));
+
+                // Update activity tracker
+                updateActivityTracker(hour, minute);
 
                 handler.postDelayed(this, 10000);
             }
@@ -391,6 +402,14 @@ public class HomeDashboardFragment extends Fragment {
                         startTime = start;
                         endTime = end;
                         tvOperationTime.setText(startTime + " — " + endTime);
+
+                        // Update activity tracker labels
+                        if (tvActivityStartTime != null) tvActivityStartTime.setText(startTime);
+                        if (tvActivityEndTime != null) tvActivityEndTime.setText(endTime);
+
+                        // Refresh tracker immediately
+                        Calendar cal = Calendar.getInstance();
+                        updateActivityTracker(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
                     }
                 }
             }
@@ -457,6 +476,7 @@ public class HomeDashboardFragment extends Fragment {
     private void loadTrapCondition(View view) {
         TextView tvTrapPercent = view.findViewById(R.id.tvTrapPercent);
         TextView tvTrapStatus = view.findViewById(R.id.tvTrapStatus);
+        ProgressBar pbTrapCircular = view.findViewById(R.id.pbTrapCircular);
 
         if (trapRef == null)
             return;
@@ -467,6 +487,15 @@ public class HomeDashboardFragment extends Fragment {
                     Integer percent = snapshot.getValue(Integer.class);
                     if (percent != null) {
                         tvTrapPercent.setText(percent + "%");
+
+                        // Animasi circular progress bar
+                        if (pbTrapCircular != null) {
+                            android.animation.ObjectAnimator animator = android.animation.ObjectAnimator.ofInt(
+                                    pbTrapCircular, "progress", pbTrapCircular.getProgress(), percent);
+                            animator.setDuration(800);
+                            animator.setInterpolator(new android.view.animation.DecelerateInterpolator());
+                            animator.start();
+                        }
 
                         if (percent >= 80) {
                             tvTrapStatus.setText("PENUH");
@@ -516,6 +545,136 @@ public class HomeDashboardFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
+        });
+    }
+    // ─── ACTIVITY TRACKER (WAKTU OPERASI) ──────────────────────────────────
+
+    private void setupActivityTracker(View view) {
+        tvActivityTimeRemaining = view.findViewById(R.id.tvActivityTimeRemaining);
+        tvActivityPeriodLabel = view.findViewById(R.id.tvActivityPeriodLabel);
+        viewActivityProgressFill = view.findViewById(R.id.viewActivityProgressFill);
+        tvActivityStartTime = view.findViewById(R.id.tvActivityStartTime);
+        tvActivityEndTime = view.findViewById(R.id.tvActivityEndTime);
+
+        // Set initial labels
+        if (tvActivityStartTime != null) tvActivityStartTime.setText(startTime);
+        if (tvActivityEndTime != null) tvActivityEndTime.setText(endTime);
+    }
+
+    private void updateActivityTracker(int currentHour, int currentMinute) {
+        if (tvActivityTimeRemaining == null || tvActivityPeriodLabel == null || viewActivityProgressFill == null) return;
+
+        // Parse startTime dan endTime
+        int startH = 18, startM = 0, endH = 6, endM = 0;
+        try {
+            String[] s = startTime.split(":");
+            startH = Integer.parseInt(s[0]);
+            startM = Integer.parseInt(s[1]);
+
+            String[] e = endTime.split(":");
+            endH = Integer.parseInt(e[0]);
+            endM = Integer.parseInt(e[1]);
+        } catch (Exception ignored) {}
+
+        int startMins = startH * 60 + startM;
+        int endMins = endH * 60 + endM;
+        int currentMins = currentHour * 60 + currentMinute;
+
+        // Hitung total durasi operasi (dalam menit)
+        int totalDuration;
+        if (startMins <= endMins) {
+            // Jadwal dalam hari yang sama, misal 06:00 — 18:00
+            totalDuration = endMins - startMins;
+        } else {
+            // Jadwal melewati tengah malam, misal 18:00 — 06:00
+            totalDuration = (24 * 60 - startMins) + endMins;
+        }
+
+        if (totalDuration <= 0) totalDuration = 1; // Hindari division by zero
+
+        // Cek apakah sekarang berada dalam jadwal operasi
+        boolean isInSchedule;
+        if (startMins <= endMins) {
+            isInSchedule = currentMins >= startMins && currentMins < endMins;
+        } else {
+            isInSchedule = currentMins >= startMins || currentMins < endMins;
+        }
+
+        int elapsedMins;
+        int remainingMins;
+
+        if (isInSchedule) {
+            // Hitung waktu yang sudah berjalan
+            if (startMins <= endMins) {
+                elapsedMins = currentMins - startMins;
+            } else {
+                if (currentMins >= startMins) {
+                    elapsedMins = currentMins - startMins;
+                } else {
+                    elapsedMins = (24 * 60 - startMins) + currentMins;
+                }
+            }
+            remainingMins = totalDuration - elapsedMins;
+        } else {
+            // Di luar jadwal - hitung waktu sampai jadwal dimulai
+            if (currentMins < startMins) {
+                remainingMins = startMins - currentMins;
+            } else {
+                remainingMins = (24 * 60 - currentMins) + startMins;
+            }
+            elapsedMins = 0;
+        }
+
+        // Format sisa waktu
+        int hours = remainingMins / 60;
+        int mins = remainingMins % 60;
+        String timeStr;
+        if (isInSchedule) {
+            timeStr = hours + "h " + mins + "m";
+        } else {
+            timeStr = "MULAI " + hours + "h " + mins + "m";
+        }
+        tvActivityTimeRemaining.setText(timeStr);
+
+        // Set label MALAM INI / SIANG INI berdasarkan jam mulai
+        if (startH >= 18 || startH < 6) {
+            tvActivityPeriodLabel.setText("MALAM INI");
+        } else {
+            tvActivityPeriodLabel.setText("SIANG INI");
+        }
+
+        // Update label jam
+        if (tvActivityStartTime != null) tvActivityStartTime.setText(startTime);
+        if (tvActivityEndTime != null) tvActivityEndTime.setText(endTime);
+
+        // Animasi progress bar
+        float progress = isInSchedule ? (float) elapsedMins / totalDuration : 0f;
+        progress = Math.max(0f, Math.min(1f, progress)); // Clamp 0-1
+
+        final float finalProgress = progress;
+        viewActivityProgressFill.post(() -> {
+            if (viewActivityProgressFill.getParent() == null) return;
+            int parentWidth = ((View) viewActivityProgressFill.getParent()).getWidth();
+            if (parentWidth <= 0) return;
+
+            int targetWidth = (int) (parentWidth * finalProgress);
+            if (targetWidth < 1 && finalProgress > 0) targetWidth = 1;
+
+            ViewGroup.LayoutParams params = viewActivityProgressFill.getLayoutParams();
+            int currentWidth = viewActivityProgressFill.getWidth();
+
+            // Animasi smooth dari current ke target
+            android.animation.ValueAnimator animator = android.animation.ValueAnimator.ofInt(currentWidth, targetWidth);
+            animator.setDuration(500);
+            animator.setInterpolator(new android.view.animation.DecelerateInterpolator());
+            animator.addUpdateListener(animation -> {
+                if (viewActivityProgressFill == null) return;
+                int animatedValue = (int) animation.getAnimatedValue();
+                ViewGroup.LayoutParams p = viewActivityProgressFill.getLayoutParams();
+                p.width = animatedValue;
+                viewActivityProgressFill.setLayoutParams(p);
+            });
+            animator.start();
         });
     }
 
