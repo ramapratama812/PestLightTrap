@@ -88,10 +88,19 @@
                 android:layout_height="match_parent">
                 
                 <ImageView
+                    android:id="@+id/ivEspCamCapture"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/img_trap_history"
                     android:scaleType="centerCrop"/>
+                
+                <ProgressBar
+                    android:id="@+id/pbCamLoading"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:indeterminateTint="#5C6BC0"/>
                 
                 <View
                     android:layout_width="match_parent"
@@ -109,14 +118,33 @@
                     android:textStyle="bold"
                     android:layout_gravity="top|start"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="KONDISI PERANGKAP"
-                    android:textColor="#E8EAF6"
-                    android:textSize="12sp"
-                    android:layout_gravity="bottom|start"/>
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="20dp">
+                    
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="KONDISI PERANGKAP"
+                        android:textColor="#E8EAF6"
+                        android:textSize="12sp"/>
+                    
+                    <ImageView
+                        android:id="@+id/btnRefreshCam"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_refresh"
+                        android:background="@drawable/bg_circle_soft"
+                        android:padding="8dp"
+                        app:tint="#FFFFFF"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </LinearLayout>
             </FrameLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -332,9 +360,10 @@
                             android:textSize="10sp"
                             android:textStyle="bold"/>
                         <TextView
+                            android:id="@+id/tvTrapCapacity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="100%"
+                            android:text="--"
                             android:textColor="#191970"
                             android:textSize="22sp"
                             android:textStyle="bold"
@@ -345,11 +374,12 @@
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
                             android:layout_marginTop="4dp">
-                            <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
+                            <View android:id="@+id/dotTrapCapacity" android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
                             <TextView
+                                android:id="@+id/tvTrapCapacityLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="PENUH"
+                                android:text="--"
                                 android:textColor="#191970"
                                 android:textSize="12sp"
                                 android:layout_marginStart="6dp"/>
@@ -373,9 +403,10 @@
                             android:textSize="10sp"
                             android:textStyle="bold"/>
                         <TextView
+                            android:id="@+id/tvTrapDistance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="50 / 20 cm"
+                            android:text="--"
                             android:textColor="#191970"
                             android:textSize="22sp"
                             android:textStyle="bold"
@@ -386,11 +417,12 @@
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
                             android:layout_marginTop="4dp">
-                            <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
+                            <View android:id="@+id/dotTrapDistance" android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
                             <TextView
+                                android:id="@+id/tvTrapDistanceLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="KOSONG"
+                                android:text="--"
                                 android:textColor="#191970"
                                 android:textSize="12sp"
                                 android:layout_marginStart="6dp"/>
@@ -417,16 +449,18 @@
                 android:gravity="center_vertical">
 
                 <View
+                    android:id="@+id/viewStatusBar"
                     android:layout_width="8dp"
                     android:layout_height="32dp"
                     android:background="@drawable/bg_pill_soft"
                     android:backgroundTint="#4CAF50"/>
 
                 <TextView
+                    android:id="@+id/tvStatusMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="KONDISI PERANGKAP AMAN DAN BERJALAN OPTIMAL SELAMA SIKLUS BERLANGSUNG."
-                    android:textColor="#4CAF50"
+                    android:text="MEMUAT DATA..."
+                    android:textColor="#7986CB"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_marginStart="16dp"/>
