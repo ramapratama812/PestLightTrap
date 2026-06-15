@@ -20,12 +20,22 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
 
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/ic_profile_placeholder"
-                    android:background="@drawable/bg_circle_soft"
-                    android:padding="8dp"/>
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@android:color/transparent">
+                    <ImageView
+                        android:id="@+id/ivProfilePicture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_profile_placeholder"
+                        android:background="@drawable/bg_circle_soft"
+                        android:scaleType="centerCrop"
+                        android:padding="8dp"/>
+                </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -41,6 +51,7 @@
                         android:textColor="#7986CB"
                         android:textSize="14sp"/>
                     <TextView
+                        android:id="@+id/tvProfileName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BUDI SANTOSO"
@@ -189,7 +200,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:text="RIWAYAT PERANGKAP"
+                        android:text="DETAIL PERANGKAP"
                         android:textColor="#7986CB"
                         android:textSize="12sp"
                         android:textStyle="bold"

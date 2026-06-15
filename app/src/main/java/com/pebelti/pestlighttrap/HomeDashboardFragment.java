@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -61,6 +63,12 @@ public class HomeDashboardFragment extends Fragment {
     private TextView[] days;
     private TextView tvOperationTime;
 
+    private ImageView ivProfilePicture;
+    private TextView tvProfileName;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private DatabaseReference userRef;
+
     // ESP32-CAM views
     private ImageView ivEspCamCapture;
     private ProgressBar pbCamLoading;
@@ -87,6 +95,18 @@ public class HomeDashboardFragment extends Fragment {
         statusIndicator = view.findViewById(R.id.statusIndicator);
         tvToggleBadge = view.findViewById(R.id.tvToggleBadge);
         View btnNotifications = view.findViewById(R.id.btnNotifications);
+        
+        ivProfilePicture = view.findViewById(R.id.ivProfilePicture);
+        tvProfileName = view.findViewById(R.id.tvProfileName);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            updateProfileUI();
+            userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
+            loadProfilePicture();
+        }
 
         // Inisialisasi Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -404,8 +424,10 @@ public class HomeDashboardFragment extends Fragment {
                         tvOperationTime.setText(startTime + " — " + endTime);
 
                         // Update activity tracker labels
-                        if (tvActivityStartTime != null) tvActivityStartTime.setText(startTime);
-                        if (tvActivityEndTime != null) tvActivityEndTime.setText(endTime);
+                        if (tvActivityStartTime != null)
+                            tvActivityStartTime.setText(startTime);
+                        if (tvActivityEndTime != null)
+                            tvActivityEndTime.setText(endTime);
 
                         // Refresh tracker immediately
                         Calendar cal = Calendar.getInstance();
@@ -547,6 +569,7 @@ public class HomeDashboardFragment extends Fragment {
             }
         });
     }
+
     // ─── ACTIVITY TRACKER (WAKTU OPERASI) ──────────────────────────────────
 
     private void setupActivityTracker(View view) {
@@ -557,12 +580,15 @@ public class HomeDashboardFragment extends Fragment {
         tvActivityEndTime = view.findViewById(R.id.tvActivityEndTime);
 
         // Set initial labels
-        if (tvActivityStartTime != null) tvActivityStartTime.setText(startTime);
-        if (tvActivityEndTime != null) tvActivityEndTime.setText(endTime);
+        if (tvActivityStartTime != null)
+            tvActivityStartTime.setText(startTime);
+        if (tvActivityEndTime != null)
+            tvActivityEndTime.setText(endTime);
     }
 
     private void updateActivityTracker(int currentHour, int currentMinute) {
-        if (tvActivityTimeRemaining == null || tvActivityPeriodLabel == null || viewActivityProgressFill == null) return;
+        if (tvActivityTimeRemaining == null || tvActivityPeriodLabel == null || viewActivityProgressFill == null)
+            return;
 
         // Parse startTime dan endTime
         int startH = 18, startM = 0, endH = 6, endM = 0;
@@ -574,7 +600,8 @@ public class HomeDashboardFragment extends Fragment {
             String[] e = endTime.split(":");
             endH = Integer.parseInt(e[0]);
             endM = Integer.parseInt(e[1]);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         int startMins = startH * 60 + startM;
         int endMins = endH * 60 + endM;
@@ -590,7 +617,8 @@ public class HomeDashboardFragment extends Fragment {
             totalDuration = (24 * 60 - startMins) + endMins;
         }
 
-        if (totalDuration <= 0) totalDuration = 1; // Hindari division by zero
+        if (totalDuration <= 0)
+            totalDuration = 1; // Hindari division by zero
 
         // Cek apakah sekarang berada dalam jadwal operasi
         boolean isInSchedule;
@@ -644,8 +672,10 @@ public class HomeDashboardFragment extends Fragment {
         }
 
         // Update label jam
-        if (tvActivityStartTime != null) tvActivityStartTime.setText(startTime);
-        if (tvActivityEndTime != null) tvActivityEndTime.setText(endTime);
+        if (tvActivityStartTime != null)
+            tvActivityStartTime.setText(startTime);
+        if (tvActivityEndTime != null)
+            tvActivityEndTime.setText(endTime);
 
         // Animasi progress bar
         float progress = isInSchedule ? (float) elapsedMins / totalDuration : 0f;
@@ -653,12 +683,15 @@ public class HomeDashboardFragment extends Fragment {
 
         final float finalProgress = progress;
         viewActivityProgressFill.post(() -> {
-            if (viewActivityProgressFill.getParent() == null) return;
+            if (viewActivityProgressFill.getParent() == null)
+                return;
             int parentWidth = ((View) viewActivityProgressFill.getParent()).getWidth();
-            if (parentWidth <= 0) return;
+            if (parentWidth <= 0)
+                return;
 
             int targetWidth = (int) (parentWidth * finalProgress);
-            if (targetWidth < 1 && finalProgress > 0) targetWidth = 1;
+            if (targetWidth < 1 && finalProgress > 0)
+                targetWidth = 1;
 
             ViewGroup.LayoutParams params = viewActivityProgressFill.getLayoutParams();
             int currentWidth = viewActivityProgressFill.getWidth();
@@ -668,7 +701,8 @@ public class HomeDashboardFragment extends Fragment {
             animator.setDuration(500);
             animator.setInterpolator(new android.view.animation.DecelerateInterpolator());
             animator.addUpdateListener(animation -> {
-                if (viewActivityProgressFill == null) return;
+                if (viewActivityProgressFill == null)
+                    return;
                 int animatedValue = (int) animation.getAnimatedValue();
                 ViewGroup.LayoutParams p = viewActivityProgressFill.getLayoutParams();
                 p.width = animatedValue;
@@ -704,7 +738,8 @@ public class HomeDashboardFragment extends Fragment {
     }
 
     private void loadEspCamImage() {
-        if (!isAdded() || ivEspCamCapture == null) return;
+        if (!isAdded() || ivEspCamCapture == null)
+            return;
 
         // Tampilkan loading indicator
         if (pbCamLoading != null) {
@@ -733,14 +768,18 @@ public class HomeDashboardFragment extends Fragment {
                 e.printStackTrace();
             } finally {
                 try {
-                    if (inputStream != null) inputStream.close();
-                } catch (Exception ignored) {}
-                if (connection != null) connection.disconnect();
+                    if (inputStream != null)
+                        inputStream.close();
+                } catch (Exception ignored) {
+                }
+                if (connection != null)
+                    connection.disconnect();
             }
 
             final Bitmap finalBitmap = bitmap;
             camHandler.post(() -> {
-                if (!isAdded()) return;
+                if (!isAdded())
+                    return;
 
                 // Sembunyikan loading indicator
                 if (pbCamLoading != null) {
@@ -753,6 +792,48 @@ public class HomeDashboardFragment extends Fragment {
                 // Jika gagal, tetap tampilkan gambar sebelumnya (atau default)
             });
         });
+    }
+
+    private void updateProfileUI() {
+        if (currentUser != null) {
+            String email = currentUser.getEmail();
+            if (email != null && email.contains("@")) {
+                String namePart = email.split("@")[0];
+                if (tvProfileName != null) {
+                    tvProfileName.setText(namePart.toUpperCase());
+                }
+            }
+        }
+    }
+
+    private void loadProfilePicture() {
+        if (userRef != null) {
+            userRef.child("profilePicture").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists() && isAdded()) {
+                        String base64Image = snapshot.getValue(String.class);
+                        if (base64Image != null && !base64Image.isEmpty()) {
+                            try {
+                                byte[] decodedString = android.util.Base64.decode(base64Image, android.util.Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                if (ivProfilePicture != null) {
+                                    ivProfilePicture.setImageBitmap(decodedByte);
+                                    ivProfilePicture.setPadding(0, 0, 0, 0);
+                                    ivProfilePicture.setBackground(null);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
     }
 
     @Override

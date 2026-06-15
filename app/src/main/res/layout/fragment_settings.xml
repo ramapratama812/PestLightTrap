@@ -38,12 +38,20 @@
                 android:gravity="center"
                 android:padding="24dp">
 
-                <ImageView
-                    android:id="@+id/ivProfilePicture"
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/ic_profile_placeholder"
-                    android:scaleType="centerCrop"/>
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@android:color/transparent">
+                    <ImageView
+                        android:id="@+id/ivProfilePicture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_profile_placeholder"
+                        android:scaleType="centerCrop"/>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/tvProfileName"
