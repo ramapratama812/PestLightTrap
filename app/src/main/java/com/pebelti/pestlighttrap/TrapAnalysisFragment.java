@@ -43,7 +43,7 @@ public class TrapAnalysisFragment extends Fragment {
     private View dotNight;
     private TextView tvNightStatus;
     private View borderNight;
-    
+
     private View dotDay;
     private TextView tvDayStatus;
     private View borderDay;
@@ -59,7 +59,8 @@ public class TrapAnalysisFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trap_monitoring, container, false);
 
         // 1. Bind Views (Trap)
@@ -76,8 +77,8 @@ public class TrapAnalysisFragment extends Fragment {
 
         // 3. Inisialisasi Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        trapRef = database.getReference("trap_analysis");
-        batteryRef = database.getReference("battery");
+        trapRef = database.getReference("smart_pest_trap/trap_analysis");
+        batteryRef = database.getReference("smart_pest_trap/battery");
 
         // 4. Load Data dari Firebase
         loadTrapData();
@@ -122,17 +123,22 @@ public class TrapAnalysisFragment extends Fragment {
                     String selesai = snapshot.child("selesai").getValue(String.class);
                     String durasi = snapshot.child("durasi").getValue(String.class);
 
-                    if (durasiSiklus != null && tvDurasiSiklus != null) tvDurasiSiklus.setText(durasiSiklus);
-                    if (mulai != null && tvMulai != null) tvMulai.setText(mulai);
-                    if (selesai != null && tvSelesai != null) tvSelesai.setText(selesai);
-                    if (durasi != null && tvDurasi != null) tvDurasi.setText(durasi);
+                    if (durasiSiklus != null && tvDurasiSiklus != null)
+                        tvDurasiSiklus.setText(durasiSiklus);
+                    if (mulai != null && tvMulai != null)
+                        tvMulai.setText(mulai);
+                    if (selesai != null && tvSelesai != null)
+                        tvSelesai.setText(selesai);
+                    if (durasi != null && tvDurasi != null)
+                        tvDurasi.setText(durasi);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 if (getContext() != null) {
-                    Toast.makeText(getContext(), "Gagal memuat data Trap: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Gagal memuat data Trap: " + error.getMessage(), Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         });
@@ -148,25 +154,31 @@ public class TrapAnalysisFragment extends Fragment {
                     String health = snapshot.child("health").getValue(String.class);
 
                     if (percent != null) {
-                        if (pbBattery != null) pbBattery.setProgress(percent);
-                        if (tvBatteryPercent != null) tvBatteryPercent.setText(percent + "%");
+                        if (pbBattery != null)
+                            pbBattery.setProgress(percent);
+                        if (tvBatteryPercent != null)
+                            tvBatteryPercent.setText(percent + "%");
                     }
-                    if (voltage != null && tvVoltage != null) tvVoltage.setText(voltage);
-                    if (health != null && tvHealth != null) tvHealth.setText(health);
+                    if (voltage != null && tvVoltage != null)
+                        tvVoltage.setText(voltage);
+                    if (health != null && tvHealth != null)
+                        tvHealth.setText(health);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 if (getContext() != null) {
-                    Toast.makeText(getContext(), "Gagal memuat data Baterai: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Gagal memuat data Baterai: " + error.getMessage(), Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         });
     }
 
     private void showDatePicker() {
-        if (getContext() == null) return;
+        if (getContext() == null)
+            return;
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getContext(),
@@ -176,15 +188,17 @@ public class TrapAnalysisFragment extends Fragment {
                     selectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     updateCalendarText();
 
-                    // TODO: Tambahkan query Firebase berdasarkan tanggal (jika struktur database mendukung history harian)
-                    // Contoh: trapRef.orderByChild("tanggal").equalTo("2026-07-15").addListenerForSingleValueEvent(...)
+                    // TODO: Tambahkan query Firebase berdasarkan tanggal (jika struktur database
+                    // mendukung history harian)
+                    // Contoh:
+                    // trapRef.orderByChild("tanggal").equalTo("2026-07-15").addListenerForSingleValueEvent(...)
 
-                    Toast.makeText(getContext(), "Menampilkan data untuk: " + tvCalendarDate.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Menampilkan data untuk: " + tvCalendarDate.getText().toString(),
+                            Toast.LENGTH_SHORT).show();
                 },
                 selectedCalendar.get(Calendar.YEAR),
                 selectedCalendar.get(Calendar.MONTH),
-                selectedCalendar.get(Calendar.DAY_OF_MONTH)
-        );
+                selectedCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
@@ -208,13 +222,15 @@ public class TrapAnalysisFragment extends Fragment {
                     // Siang (Day) -> Night Card Inactive
                     if (dotNight != null) {
                         dotNight.setBackgroundResource(R.drawable.bg_circle_soft);
-                        dotNight.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#9FA8DA")));
+                        dotNight.setBackgroundTintList(
+                                android.content.res.ColorStateList.valueOf(Color.parseColor("#9FA8DA")));
                     }
                     if (tvNightStatus != null) {
                         tvNightStatus.setText("PERANGKAP TIDAK AKTIF");
                         tvNightStatus.setTextColor(Color.parseColor("#7986CB"));
                     }
-                    if (borderNight != null) borderNight.setBackgroundColor(Color.TRANSPARENT);
+                    if (borderNight != null)
+                        borderNight.setBackgroundColor(Color.TRANSPARENT);
 
                     // Day Card Active (Tapi status perangkap mati di siang hari)
                     if (dotDay != null) {
@@ -225,7 +241,8 @@ public class TrapAnalysisFragment extends Fragment {
                         tvDayStatus.setText("PERANGKAP TIDAK AKTIF");
                         tvDayStatus.setTextColor(Color.parseColor("#5C6BC0"));
                     }
-                    if (borderDay != null) borderDay.setBackgroundColor(Color.parseColor("#5C6BC0"));
+                    if (borderDay != null)
+                        borderDay.setBackgroundColor(Color.parseColor("#5C6BC0"));
 
                 } else {
                     // Malam (Night) -> Night Card Active
@@ -237,18 +254,21 @@ public class TrapAnalysisFragment extends Fragment {
                         tvNightStatus.setText("PERANGKAP AKTIF");
                         tvNightStatus.setTextColor(Color.parseColor("#5C6BC0"));
                     }
-                    if (borderNight != null) borderNight.setBackgroundColor(Color.parseColor("#5C6BC0"));
+                    if (borderNight != null)
+                        borderNight.setBackgroundColor(Color.parseColor("#5C6BC0"));
 
                     // Day Card Inactive
                     if (dotDay != null) {
                         dotDay.setBackgroundResource(R.drawable.bg_circle_soft);
-                        dotDay.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#9FA8DA")));
+                        dotDay.setBackgroundTintList(
+                                android.content.res.ColorStateList.valueOf(Color.parseColor("#9FA8DA")));
                     }
                     if (tvDayStatus != null) {
                         tvDayStatus.setText("PERANGKAP TIDAK AKTIF");
                         tvDayStatus.setTextColor(Color.parseColor("#7986CB"));
                     }
-                    if (borderDay != null) borderDay.setBackgroundColor(Color.TRANSPARENT);
+                    if (borderDay != null)
+                        borderDay.setBackgroundColor(Color.TRANSPARENT);
                 }
 
                 handler.postDelayed(this, 10000); // Cek setiap 10 detik
@@ -262,7 +282,7 @@ public class TrapAnalysisFragment extends Fragment {
         View tabBattery = view.findViewById(R.id.tabBattery);
         View layoutTrapContent = view.findViewById(R.id.layoutTrapContent);
         View layoutBatteryContent = view.findViewById(R.id.layoutBatteryContent);
-        
+
         ImageView ivTabTrap = view.findViewById(R.id.ivTabTrap);
         TextView tvTabTrap = view.findViewById(R.id.tvTabTrap);
         ImageView ivTabBattery = view.findViewById(R.id.ivTabBattery);
@@ -272,10 +292,10 @@ public class TrapAnalysisFragment extends Fragment {
             android.transition.TransitionManager.beginDelayedTransition((android.view.ViewGroup) view);
             layoutTrapContent.setVisibility(View.VISIBLE);
             layoutBatteryContent.setVisibility(View.GONE);
-            
+
             tabTrap.setBackgroundResource(R.drawable.bg_tab_active);
             tabBattery.setBackground(null);
-            
+
             ivTabTrap.setColorFilter(Color.WHITE);
             tvTabTrap.setTextColor(Color.WHITE);
             ivTabBattery.setColorFilter(Color.parseColor("#7986CB"));
@@ -286,10 +306,10 @@ public class TrapAnalysisFragment extends Fragment {
             android.transition.TransitionManager.beginDelayedTransition((android.view.ViewGroup) view);
             layoutTrapContent.setVisibility(View.GONE);
             layoutBatteryContent.setVisibility(View.VISIBLE);
-            
+
             tabBattery.setBackgroundResource(R.drawable.bg_tab_active);
             tabTrap.setBackground(null);
-            
+
             ivTabBattery.setColorFilter(Color.WHITE);
             tvTabBattery.setTextColor(Color.WHITE);
             ivTabTrap.setColorFilter(Color.parseColor("#7986CB"));
