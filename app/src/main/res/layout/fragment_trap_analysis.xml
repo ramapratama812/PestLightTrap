@@ -173,6 +173,7 @@
                             android:textStyle="bold"
                             android:letterSpacing="0.1"/>
                         <TextView
+                            android:id="@+id/tvWeeklyDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SENIN, 19 MEI 2026"
@@ -211,6 +212,7 @@
                                     android:textSize="10sp"
                                     android:textStyle="bold"/>
                                 <TextView
+                                    android:id="@+id/tvTrapCapacityPercent"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="100%"
@@ -224,8 +226,9 @@
                                     android:orientation="horizontal"
                                     android:gravity="center_vertical"
                                     android:layout_marginTop="4dp">
-                                    <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
+                                    <View android:id="@+id/dotTrapCapacity" android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
                                     <TextView
+                                        android:id="@+id/tvTrapCapacityStatus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="PENUH"
@@ -252,6 +255,7 @@
                                     android:textSize="10sp"
                                     android:textStyle="bold"/>
                                 <TextView
+                                    android:id="@+id/tvTrapSurfaceDistance"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="50 / 20 cm"
@@ -265,8 +269,9 @@
                                     android:orientation="horizontal"
                                     android:gravity="center_vertical"
                                     android:layout_marginTop="4dp">
-                                    <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
+                                    <View android:id="@+id/dotTrapSurface" android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/dot_green" />
                                     <TextView
+                                        android:id="@+id/tvTrapSurfaceStatus"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="KOSONG"
@@ -313,160 +318,12 @@
                                 android:layout_alignParentEnd="true"/>
                         </RelativeLayout>
 
-                        <!-- ITEM 1 -->
+                        <!-- Dynamic daily items container -->
                         <LinearLayout
+                            android:id="@+id/layoutDailyItems"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:paddingVertical="12dp">
-                            <TextView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:background="@drawable/bg_circle_soft"
-                                android:backgroundTint="#3F51B5"
-                                android:text="1"
-                                android:textColor="#FFFFFF"
-                                android:gravity="center"
-                                android:textStyle="bold"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="SENIN"
-                                        android:textColor="#191970"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="20%"
-                                        android:textColor="#191970"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"
-                                        android:layout_alignParentEnd="true"/>
-                                </RelativeLayout>
-                                <ProgressBar
-                                    style="@android:style/Widget.ProgressBar.Horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="8dp"
-                                    android:progress="100"
-                                    android:progressDrawable="@drawable/bg_progress_fill_blue"
-                                    android:layout_marginTop="8dp"/>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <!-- ITEM 2 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:paddingVertical="12dp">
-                            <TextView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:background="@drawable/bg_circle_soft"
-                                android:backgroundTint="#E8EAF6"
-                                android:text="2"
-                                android:textColor="#191970"
-                                android:gravity="center"
-                                android:textStyle="bold"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="KAMIS"
-                                        android:textColor="#191970"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="10%"
-                                        android:textColor="#191970"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"
-                                        android:layout_alignParentEnd="true"/>
-                                </RelativeLayout>
-                                <ProgressBar
-                                    style="@android:style/Widget.ProgressBar.Horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="8dp"
-                                    android:progress="85"
-                                    android:progressDrawable="@drawable/bg_progress_fill_blue"
-                                    android:layout_marginTop="8dp"
-                                    android:alpha="0.6"/>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <!-- ITEM 3 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:paddingVertical="12dp">
-                            <TextView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:background="@drawable/bg_circle_soft"
-                                android:backgroundTint="#E8EAF6"
-                                android:text="3"
-                                android:textColor="#191970"
-                                android:gravity="center"
-                                android:textStyle="bold"/>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginStart="16dp">
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="SELASA"
-                                        android:textColor="#191970"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="30%"
-                                        android:textColor="#191970"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold"
-                                        android:layout_alignParentEnd="true"/>
-                                </RelativeLayout>
-                                <ProgressBar
-                                    style="@android:style/Widget.ProgressBar.Horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="8dp"
-                                    android:progress="70"
-                                    android:progressDrawable="@drawable/bg_progress_fill_blue"
-                                    android:layout_marginTop="8dp"
-                                    android:alpha="0.4"/>
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:orientation="vertical"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -542,6 +399,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/tvBattVoltage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="13.2V"
@@ -578,6 +436,7 @@
                                     android:backgroundTint="#FFFFFF"
                                     android:layout_marginEnd="6dp"/>
                                 <TextView
+                                    android:id="@+id/tvBattHealthBadge"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="NORMAL"
@@ -594,6 +453,7 @@
                             android:orientation="vertical"
                             android:gravity="end">
                             <TextView
+                                android:id="@+id/tvBattLifetime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="12H"
@@ -664,6 +524,7 @@
                             android:textSize="12sp"
                             android:layout_marginTop="12dp"/>
                         <TextView
+                            android:id="@+id/tvPanelEfficiency"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="92%"
@@ -682,13 +543,15 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bg_progress_track"/>
                             <View
+                                android:id="@+id/viewPanelProgressFill"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bg_progress_fill_green"
-                                android:layout_marginEnd="20dp"/> <!-- Simulates 90% -->
+                                android:layout_marginEnd="20dp"/>
                         </FrameLayout>
 
                         <TextView
+                            android:id="@+id/tvPanelPeakTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PUNCAK: 12:00"
@@ -743,6 +606,7 @@
                             android:textSize="12sp"
                             android:layout_marginTop="12dp"/>
                         <TextView
+                            android:id="@+id/tvBattCyclePercent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="85%"
@@ -761,13 +625,15 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bg_progress_track"/>
                             <View
+                                android:id="@+id/viewBattProgressFill"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bg_progress_fill_blue"
-                                android:layout_marginEnd="30dp"/> <!-- Simulates 80% -->
+                                android:layout_marginEnd="30dp"/>
                         </FrameLayout>
 
                         <TextView
+                            android:id="@+id/tvBattStatusTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="STATUS: 6.5 JAM"

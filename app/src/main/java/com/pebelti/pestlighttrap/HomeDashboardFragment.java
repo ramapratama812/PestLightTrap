@@ -95,7 +95,7 @@ public class HomeDashboardFragment extends Fragment {
         statusIndicator = view.findViewById(R.id.statusIndicator);
         tvToggleBadge = view.findViewById(R.id.tvToggleBadge);
         View btnNotifications = view.findViewById(R.id.btnNotifications);
-        
+
         ivProfilePicture = view.findViewById(R.id.ivProfilePicture);
         tvProfileName = view.findViewById(R.id.tvProfileName);
 
@@ -815,8 +815,10 @@ public class HomeDashboardFragment extends Fragment {
                         String base64Image = snapshot.getValue(String.class);
                         if (base64Image != null && !base64Image.isEmpty()) {
                             try {
-                                byte[] decodedString = android.util.Base64.decode(base64Image, android.util.Base64.DEFAULT);
-                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                byte[] decodedString = android.util.Base64.decode(base64Image,
+                                        android.util.Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,
+                                        decodedString.length);
                                 if (ivProfilePicture != null) {
                                     ivProfilePicture.setImageBitmap(decodedByte);
                                     ivProfilePicture.setPadding(0, 0, 0, 0);
