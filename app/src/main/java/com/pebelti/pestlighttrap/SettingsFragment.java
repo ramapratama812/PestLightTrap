@@ -128,6 +128,7 @@ public class SettingsFragment extends Fragment {
             currentUser = mAuth.getCurrentUser();
             currentUser.reload().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && isAdded()) {
+                    currentUser = mAuth.getCurrentUser();
                     updateProfileUI();
                 }
             });
@@ -139,7 +140,14 @@ public class SettingsFragment extends Fragment {
             String email = currentUser.getEmail();
             if (email != null) {
                 tvProfileEmail.setText(email);
-                if (email.contains("@")) {
+            }
+
+            String displayName = currentUser.getDisplayName();
+            if (displayName != null && !displayName.isEmpty()) {
+                tvProfileName.setText(displayName.toUpperCase());
+            } else {
+                // Fallback ke email prefix jika displayName belum diatur
+                if (email != null && email.contains("@")) {
                     String namePart = email.split("@")[0];
                     tvProfileName.setText(namePart.toUpperCase());
                 }

@@ -794,13 +794,35 @@ public class HomeDashboardFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAuth != null && mAuth.getCurrentUser() != null) {
+            currentUser = mAuth.getCurrentUser();
+            currentUser.reload().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && isAdded()) {
+                    currentUser = mAuth.getCurrentUser();
+                    updateProfileUI();
+                }
+            });
+        }
+    }
+
     private void updateProfileUI() {
         if (currentUser != null) {
-            String email = currentUser.getEmail();
-            if (email != null && email.contains("@")) {
-                String namePart = email.split("@")[0];
+            String displayName = currentUser.getDisplayName();
+            if (displayName != null && !displayName.isEmpty()) {
                 if (tvProfileName != null) {
-                    tvProfileName.setText(namePart.toUpperCase());
+                    tvProfileName.setText(displayName.toUpperCase());
+                }
+            } else {
+                // Fallback ke email prefix jika displayName belum diatur
+                String email = currentUser.getEmail();
+                if (email != null && email.contains("@")) {
+                    String namePart = email.split("@")[0];
+                    if (tvProfileName != null) {
+                        tvProfileName.setText(namePart.toUpperCase());
+                    }
                 }
             }
         }
