@@ -25,12 +25,18 @@
             android:id="@+id/tvMarkAsRead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tandai semua dibaca"
-            android:textColor="#5C6BC0"
-            android:textSize="14sp"
+            android:text="✓ Tandai Dibaca"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             android:textStyle="bold"
+            android:background="@drawable/bg_pill_soft"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="8dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:elevation="2dp"
+            android:clickable="true"
+            android:focusable="true"/>
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -71,11 +71,16 @@
                         android:layout_height="28dp"
                         android:src="@drawable/ic_notifications"
                         app:tint="@color/purple_navy"/>
+                    <!-- Titik merah notifikasi belum dibaca -->
                     <View
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
+                        android:id="@+id/viewNotificationDot"
+                        android:layout_width="9dp"
+                        android:layout_height="9dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="1dp"
                         android:background="@drawable/dot_red"
-                        android:layout_gravity="top|end"/>
+                        android:visibility="gone"/>
                 </FrameLayout>
             </LinearLayout>
 

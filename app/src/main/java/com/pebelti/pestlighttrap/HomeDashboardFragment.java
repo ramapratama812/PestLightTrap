@@ -1,6 +1,8 @@
 package com.pebelti.pestlighttrap;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -46,6 +48,7 @@ public class HomeDashboardFragment extends Fragment {
     private TextView tvStatus;
     private View statusIndicator;
     private TextView tvToggleBadge;
+    private View viewNotificationDot;
     private boolean isDeviceOn = true;
     private boolean isAutoMode = true;
 
@@ -94,7 +97,11 @@ public class HomeDashboardFragment extends Fragment {
         tvStatus = view.findViewById(R.id.tvDeviceStatus);
         statusIndicator = view.findViewById(R.id.statusIndicator);
         tvToggleBadge = view.findViewById(R.id.tvToggleBadge);
+        viewNotificationDot = view.findViewById(R.id.viewNotificationDot);
         View btnNotifications = view.findViewById(R.id.btnNotifications);
+
+        // Tampilkan/sembunyikan dot merah bell sesuai status baca
+        refreshNotificationDot();
 
         ivProfilePicture = view.findViewById(R.id.ivProfilePicture);
         tvProfileName = view.findViewById(R.id.tvProfileName);
@@ -797,6 +804,8 @@ public class HomeDashboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        // Refresh dot saat kembali dari halaman notifikasi
+        refreshNotificationDot();
         if (mAuth != null && mAuth.getCurrentUser() != null) {
             currentUser = mAuth.getCurrentUser();
             currentUser.reload().addOnCompleteListener(task -> {
@@ -870,5 +879,29 @@ public class HomeDashboardFragment extends Fragment {
         if (camExecutor != null && !camExecutor.isShutdown()) {
             camExecutor.shutdownNow();
         }
+    }
+
+    // ─── NOTIFICATION DOT HELPER ─────────────────────────────────────────────
+
+    /** Key SharedPreferences untuk status notifikasi belum dibaca */
+    static final String PREFS_NAME = "notif_prefs";
+    static final String KEY_HAS_UNREAD = "has_unread_notif";
+
+    /**
+     * Simpan status "ada notifikasi belum dibaca" ke SharedPreferences.
+     * Dipanggil saat Firebase mendeteksi ada notifikasi baru, atau dihapus
+     * saat semua notifikasi sudah ditandai dibaca.
+     */
+    static void setHasUnreadNotification(Context context, boolean hasUnread) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putBoolean(KEY_HAS_UNREAD, hasUnread).apply();
+    }
+
+    /** Baca SharedPreferences dan tampilkan/sembunyikan dot merah di bell. */
+    private void refreshNotificationDot() {
+        if (viewNotificationDot == null || getContext() == null) return;
+        SharedPreferences prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        boolean hasUnread = prefs.getBoolean(KEY_HAS_UNREAD, false);
+        viewNotificationDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
     }
 }
